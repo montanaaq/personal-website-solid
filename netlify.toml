@@ -1,0 +1,30 @@
+[build]
+  command = "bun run build"
+  publish = "dist"  
+
+[build.environment]
+  NODE_VERSION = "24.14.0"
+  BUN_VERSION = "latest"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# CSS
+[[headers]]
+  for = "/assets/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# SPA redirect
+[[redirects]] 
+  from = "/*"
+  to = "/index.html"
+  status = 200
