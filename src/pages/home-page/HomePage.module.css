@@ -125,6 +125,7 @@
     font-size: 1.7rem;
     transform: translate(-50%, calc(-50% + 250px));
     width: 100%;
+    margin-top: 40px;
     left: 50%;
   }
 }
