@@ -1,28 +1,33 @@
-import { m } from 'motion/react'
 import type { Component } from 'solid-js'
-import { useLanguage } from '@/shared/hooks/useLanguage'
+import { Motion as m } from 'solid-motionone'
+import {
+  LOCALE_DISPLAY,
+  SUPPORTED_LOCALES
+} from '@/shared/constants/i18n.const'
+import { useI18n } from '@/shared/context/I18nContext'
+import type { Locale } from '@/shared/i18n/i18n'
 import styles from './Header.module.css'
 
+const getNextLocale = (current: Locale): Locale => {
+  const currentIndex = SUPPORTED_LOCALES.indexOf(current as Locale)
+  const nextIndex = (currentIndex + 1) % SUPPORTED_LOCALES.length
+  return SUPPORTED_LOCALES[nextIndex]
+}
+
 const LanguageToggle: Component = () => {
-  const { language, setLanguage } = useLanguage()
+  const { locale, setLocale } = useI18n()
 
   const toggleLanguage = () => {
-    const newLanguage = language === 'ru' ? 'en' : 'ru'
-    setLanguage(newLanguage)
+    const next = getNextLocale(locale())
+    setLocale(next)
   }
-
   return (
     <m.button
       onClick={toggleLanguage}
-      className={styles.language_toggle}
-      whileHover={{
-        scale: 1.05,
-        transition: { type: 'spring', stiffness: 300, damping: 10 }
-      }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+      class={styles.language_toggle}
+      transition={{ easing: 'ease-in-out', duration: 0.3 }}
     >
-      {language === 'ru' ? 'EN' : 'RU'}
+      {LOCALE_DISPLAY[locale()]}
     </m.button>
   )
 }

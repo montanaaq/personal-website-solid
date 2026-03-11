@@ -1,19 +1,21 @@
-import { m } from 'motion/react'
-import type { Component } from 'solid-js'
+import { type Component, Show } from 'solid-js'
+import { Motion as m } from 'solid-motionone'
 import { toast } from 'sonner'
-import { useTheme } from '@/shared/contexts/ThemeContext'
-import { useLanguage } from '@/shared/hooks/useLanguage'
+import { useI18n } from '@/shared/context/I18nContext'
+import { useTheme } from '@/shared/context/ThemeContext'
+import MoonIcon from '../icons/MoonIcon'
 import SunIcon from '../icons/SunIcon'
 import styles from './Header.module.css'
 
 const ThemeToggle: Component = () => {
   const { theme, toggleTheme } = useTheme()
-  const { t } = useLanguage()
+  const { t } = useI18n()
 
-  const isLight = theme === 'light'
+  const isLight = theme() === 'light'
 
   const handleClick = (e: MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect()
+    if (!e.currentTarget) return
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()
     const coords = {
       x: rect.left + rect.width / 2,
       y: rect.top + rect.height / 2
@@ -21,28 +23,23 @@ const ThemeToggle: Component = () => {
 
     toggleTheme(coords)
 
-    toast.info(isLight ? t.theme.darkActivated : t.theme.lightActivated)
+    toast.info(isLight ? t('theme.dark-activated') : t('theme.light-activated'))
   }
 
   return (
     <div>
       <m.button
         onClick={handleClick}
-        className={styles.toggle_light_mode}
-        whileHover={{
-          scale: 1.1,
-          rotate: 180,
-          transition: { type: 'spring', stiffness: 300, damping: 10 }
-        }}
-        transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-        aria-label={isLight ? t.theme.darkActivated : t.theme.lightActivated}
-        title={isLight ? t.theme.darkActivated : t.theme.lightActivated}
+        class={styles.toggle_light_mode}
+        transition={{ easing: 'ease-in-out', duration: 0.3 }}
+        aria-label={
+          isLight ? t('theme.dark-activated') : t('theme.light-activated')
+        }
+        title={isLight ? t('theme.dark-activated') : t('theme.light-activated')}
       >
-        {isLight ? (
-          <MoonIcon strokeWidth={1.5} />
-        ) : (
-          <SunIcon strokeWidth={1.5} />
-        )}
+        <Show when={isLight} fallback={<SunIcon stroke-width={1.5} />}>
+          <MoonIcon stroke-width={1.5} />
+        </Show>
       </m.button>
     </div>
   )

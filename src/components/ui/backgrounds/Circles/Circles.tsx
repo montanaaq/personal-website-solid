@@ -1,10 +1,10 @@
-import type { FC, ReactElement, ReactNode } from 'react'
+import type { Component, JSX } from 'solid-js'
 import styles from './Circles.module.css'
 
-const Circles: FC<{ children: ReactElement<ReactNode> }> = ({ children }) => {
+const Circles: Component<{ children: JSX.Element }> = ({ children }) => {
   return (
     <>
-      <ul className={styles.circles}>
+      <ul class={styles.circles}>
         <li></li>
         <li></li>
         <li></li>

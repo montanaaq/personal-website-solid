@@ -30,7 +30,7 @@
   gap: 20px;
 
   /* Floating island styles */
-  background: rgba(var(--bg-color), 0.6);
+  background-color: color-mix(in srgb, var(--bg-color) 20%, transparent 80%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -39,18 +39,23 @@
   box-shadow:
     0px 4px 24px rgba(0, 0, 0, 0.15),
     0px 8px 48px rgba(0, 0, 0, 0.1),
-    inset 0px 1px 0px rgba(255, 255, 255, 0.1);
+    inset 0px 1px 0px rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
 .header.scrolled .wrapper {
+  background-color: color-mix(
+    in srgb,
+    var(--bg-color) 80%,
+    var(--text-color) 20%
+  );
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   box-shadow:
     0px 6px 32px rgba(0, 0, 0, 0.2),
     0px 12px 56px rgba(0, 0, 0, 0.15),
-    inset 0px 1px 0px rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+    inset 0px 1px 0px rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .wrapper div {
@@ -67,6 +72,7 @@
   transition: 0.2s;
   letter-spacing: 0.85px;
   white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
 .toggle_light_mode {
@@ -83,6 +89,7 @@
   transition: 0.2s;
   border-radius: 50%;
   padding: 8px;
+  filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.45));
 }
 
 .toggle_dark_mode:hover,
@@ -107,6 +114,7 @@
   border-radius: 8px;
   padding: 8px 12px;
   white-space: nowrap;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
 .language_toggle:hover {
