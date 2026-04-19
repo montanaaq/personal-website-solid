@@ -1,4 +1,4 @@
-import { type Component, Show } from 'solid-js'
+import { type Component, createMemo, Show } from 'solid-js'
 import { Motion as m } from 'solid-motionone'
 import { toast } from 'sonner'
 import { useI18n } from '@/shared/context/I18nContext'
@@ -11,7 +11,7 @@ const ThemeToggle: Component = () => {
   const { theme, toggleTheme } = useTheme()
   const { t } = useI18n()
 
-  const isLight = theme() === 'light'
+  const isLight = createMemo(() => theme() === 'light')
 
   const handleClick = (e: MouseEvent) => {
     if (!e.currentTarget) return
@@ -23,7 +23,7 @@ const ThemeToggle: Component = () => {
 
     toggleTheme(coords)
 
-    toast.info(isLight ? t('theme.dark-activated') : t('theme.light-activated'))
+    toast.info(isLight() ? t('theme.dark-activated') : t('theme.light-activated'))
   }
 
   return (
@@ -33,11 +33,11 @@ const ThemeToggle: Component = () => {
         class={styles.toggle_light_mode}
         transition={{ easing: 'ease-in-out', duration: 0.3 }}
         aria-label={
-          isLight ? t('theme.dark-activated') : t('theme.light-activated')
+          isLight() ? t('theme.dark-activated') : t('theme.light-activated')
         }
-        title={isLight ? t('theme.dark-activated') : t('theme.light-activated')}
+        title={isLight() ? t('theme.dark-activated') : t('theme.light-activated')}
       >
-        <Show when={isLight} fallback={<SunIcon stroke-width={1.5} />}>
+        <Show when={isLight()} fallback={<SunIcon stroke-width={1.5} />}>
           <MoonIcon stroke-width={1.5} />
         </Show>
       </m.button>

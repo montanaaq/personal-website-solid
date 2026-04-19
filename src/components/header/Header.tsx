@@ -16,7 +16,7 @@ const Header: Component = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  })
 
   return (
     <header class={`${styles.header} ${isScrolled() ? styles.scrolled : ''}`}>
