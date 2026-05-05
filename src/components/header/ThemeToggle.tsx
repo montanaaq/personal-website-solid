@@ -23,7 +23,9 @@ const ThemeToggle: Component = () => {
 
     toggleTheme(coords)
 
-    toast.info(isLight() ? t('theme.dark-activated') : t('theme.light-activated'))
+    toast.info(
+      isLight() ? t('theme.dark-activated') : t('theme.light-activated')
+    )
   }
 
   return (
@@ -35,7 +37,9 @@ const ThemeToggle: Component = () => {
         aria-label={
           isLight() ? t('theme.dark-activated') : t('theme.light-activated')
         }
-        title={isLight() ? t('theme.dark-activated') : t('theme.light-activated')}
+        title={
+          isLight() ? t('theme.dark-activated') : t('theme.light-activated')
+        }
       >
         <Show when={isLight()} fallback={<SunIcon stroke-width={1.5} />}>
           <MoonIcon stroke-width={1.5} />

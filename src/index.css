@@ -178,7 +178,7 @@ li a:hover {
 /* biome-ignore lint/correctness/noUnknownTypeSelector: View Transition API pseudo-elements */
 ::view-transition-old(root),
 /* biome-ignore lint/correctness/noUnknownTypeSelector: View Transition API pseudo-elements */
-  ::view-transition-new(root) {
+::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }

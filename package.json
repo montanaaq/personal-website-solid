@@ -13,17 +13,17 @@
   "dependencies": {
     "@solid-primitives/i18n": "^2.2.1",
     "@solidjs/router": "^0.15.4",
-    "solid-js": "^1.9.10",
+    "solid-js": "^1.9.12",
     "solid-motionone": "^1.0.4",
     "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
-    "@types/node": "^24.10.1",
-    "knip": "^5.86.0",
+    "@biomejs/biome": "^2.4.14",
+    "@types/node": "^24.12.2",
+    "knip": "^5.88.1",
     "typescript": "~5.9.3",
-    "vite": "^8.0.0-beta.13",
-    "vite-plugin-solid": "^2.11.10"
+    "vite": "^8.0.10",
+    "vite-plugin-solid": "^2.11.12"
   },
   "browserslist": {
     "production": [
