@@ -12,17 +12,17 @@
   },
   "dependencies": {
     "@solid-primitives/i18n": "^2.2.1",
-    "@solidjs/router": "^0.15.4",
-    "solid-js": "^1.9.12",
+    "@solidjs/router": "^0.16.1",
+    "solid-js": "^1.9.13",
     "solid-motionone": "^1.0.4",
     "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.14",
-    "@types/node": "^24.12.2",
-    "knip": "^5.88.1",
-    "typescript": "~5.9.3",
-    "vite": "^8.0.10",
+    "@biomejs/biome": "^2.4.15",
+    "@types/node": "^25.9.1",
+    "knip": "^6.14.1",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.14",
     "vite-plugin-solid": "^2.11.12"
   },
   "browserslist": {
