@@ -13,6 +13,7 @@
   "dependencies": {
     "@solid-primitives/i18n": "^2.2.1",
     "@solidjs/router": "^0.16.1",
+    "personal-website-solid": "link:",
     "solid-js": "^1.9.13",
     "solid-motionone": "^1.0.4",
     "sonner": "^2.0.7"

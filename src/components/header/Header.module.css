@@ -12,6 +12,7 @@
   left: 0;
   right: 0;
   z-index: 10001;
+  isolation: isolate;
   background: transparent;
   transition: all 0.3s ease;
   padding: 20px 0;
@@ -28,10 +29,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  will-change: backdrop-filter;
 
   /* Floating island styles */
   background-color: color-mix(in srgb, var(--bg-color) 20%, transparent 80%);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
