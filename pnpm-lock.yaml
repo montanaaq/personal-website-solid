@@ -14,9 +14,6 @@ importers:
       '@solidjs/router':
         specifier: ^0.16.1
         version: 0.16.1(solid-js@1.9.13)
-      personal-website-solid:
-        specifier: 'link:'
-        version: 'link:'
       solid-js:
         specifier: ^1.9.13
         version: 1.9.13
