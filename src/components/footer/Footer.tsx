@@ -15,11 +15,11 @@ const Footer: Component = () => {
   return (
     <footer class={footerClass}>
       <span style={{ opacity: '.6' }}>
-        © {year}
+        © {year}&nbsp;
         <a href="https://montaanaq.netlify.app" class={styles.footer_span}>
           Montana
         </a>
-        &nbsp;Powered by
+        &nbsp;Powered by&nbsp;
         <a
           href="https://www.solidjs.com/"
           target="_blank"
