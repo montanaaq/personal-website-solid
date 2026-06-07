@@ -7,18 +7,18 @@ import {
   useContext
 } from 'solid-js'
 import { fetchDictionary, type Locale } from '../i18n/i18n'
-import { dict as en_dict } from '../i18n/locales/en'
+import { enFlat } from '../i18n/locales/en'
 
 type I18nContextValue = ReturnType<typeof useI18nState>
 
 function useI18nState() {
   const [locale, setLocale] = createSignal<Locale>('en')
   const [dict] = createResource(locale, fetchDictionary, {
-    initialValue: i18n.flatten(en_dict)
+    initialValue: enFlat
   })
 
   const translator = i18n.translator(
-    () => dict.latest ?? i18n.flatten(en_dict),
+    () => dict.latest ?? enFlat,
     i18n.resolveTemplate
   )
   const t = translator as (key: string, ...args: any[]) => string

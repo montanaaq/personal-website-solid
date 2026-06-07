@@ -1,3 +1,5 @@
+import { flatten } from '@solid-primitives/i18n'
+
 export const dict = {
   header: {
     name: 'Montana'
@@ -81,3 +83,5 @@ export const dict = {
     'alfa-ecosystem-date': 'November 2025'
   }
 }
+
+export const enFlat = flatten(dict)
