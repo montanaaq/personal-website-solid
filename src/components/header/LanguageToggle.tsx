@@ -1,18 +1,9 @@
 import type { Component } from 'solid-js'
 import { Motion as m } from 'solid-motionone'
-import {
-  LOCALE_DISPLAY,
-  SUPPORTED_LOCALES
-} from '@/shared/constants/i18n.const'
+import { LOCALE_DISPLAY } from '@/shared/constants/i18n.const'
 import { useI18n } from '@/shared/context/I18nContext'
-import type { Locale } from '@/shared/i18n/i18n'
+import { getNextLocale } from '@/shared/helpers/get-next-locale'
 import styles from './Header.module.css'
-
-const getNextLocale = (current: Locale): Locale => {
-  const currentIndex = SUPPORTED_LOCALES.indexOf(current as Locale)
-  const nextIndex = (currentIndex + 1) % SUPPORTED_LOCALES.length
-  return SUPPORTED_LOCALES[nextIndex]
-}
 
 const LanguageToggle: Component = () => {
   const { locale, setLocale } = useI18n()

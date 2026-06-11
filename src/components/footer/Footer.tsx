@@ -14,7 +14,7 @@ const Footer: Component = () => {
 
   return (
     <footer class={footerClass}>
-      <span style={{ opacity: '.6' }}>
+      <span>
         © {year}&nbsp;
         <a href="https://montaanaq.netlify.app" class={styles.footer_span}>
           Montana

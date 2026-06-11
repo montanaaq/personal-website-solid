@@ -13,6 +13,38 @@
   box-sizing: border-box;
 }
 
+.header {
+  margin: 20px 0 40px 0;
+}
+
+.header h1 {
+  font-size: 2.375rem;
+  font-weight: 600;
+
+  span {
+    color: var(--secondary);
+  }
+}
+
+.post_content h2 {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.post_content ul {
+  text-align: left;
+  margin-bottom: 35px;
+  margin-left: 20px;
+
+  li {
+    margin-bottom: 15px;
+  }
+  li a {
+    color: var(--lower-text-color);
+    text-decoration-thickness: 1px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .main_post {
     height: calc(100vh - var(--header-height));

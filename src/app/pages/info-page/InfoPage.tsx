@@ -22,40 +22,21 @@ const Info: Component = () => {
     <Circles>
       <div>
         <div class={styles.main_post}>
-          <header style={{ margin: '20px 0px 40px 0px' }}>
-            <h1 style={{ 'font-size': '2.375rem', 'font-weight': 600 }}>
-              {t('info.title')}{' '}
-              <span style={{ color: 'var(--secondary)' }}>
-                {t('info.title-highlight')}
-              </span>
+          <div class={styles.header}>
+            <h1>
+              {t('info.title')} <span>{t('info.title-highlight')}</span>
             </h1>
             <div>
               <span>{formattedDate()}</span>
             </div>
-          </header>
+          </div>
           <div class={styles.post_content}>
-            <h2 style={{ 'text-align': 'left', 'margin-bottom': '15px' }}>
-              {t('info.content')}
-            </h2>
-            <ul
-              style={{
-                'text-align': 'left',
-                'margin-left': '20px',
-                'margin-bottom': '35px'
-              }}
-            >
+            <h2>{t('info.content')}</h2>
+            <ul>
               <For each={projectsList}>
                 {el => (
-                  <li style={{ 'margin-bottom': '15px' }}>
-                    <a
-                      href={`#${el.url}`}
-                      style={{
-                        color: 'var(--lower-text-color)',
-                        'text-decoration-thickness': '1px'
-                      }}
-                    >
-                      {t(el.nameKey)}
-                    </a>
+                  <li>
+                    <a href={`#${el.url}`}>{t(el.nameKey)}</a>
                   </li>
                 )}
               </For>

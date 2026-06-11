@@ -19,12 +19,10 @@ const ProjectCard: Component<ProjectCardProps> = props => {
       inViewOptions={{ amount: 0.2, once: true }}
       transition={{ duration: 0.4, easing: 'ease-out' }}
     >
-      <h2 style={{ 'margin-bottom': '10px' }} id={props.project.url}>
+      <h2 id={props.project.url}>
         {props.project.main_name} ({t(props.project.dateKey)})
       </h2>
-      <p style={{ 'margin-bottom': '10px', color: 'var(--lower-text-color)' }}>
-        {t(props.project.pKey)}
-      </p>
+      <p class={styles.description}>{t(props.project.pKey)}</p>
       <p class={styles.status}>
         {t('info.status')}{' '}
         {props.project.isSupport ? (
@@ -34,28 +32,24 @@ const ProjectCard: Component<ProjectCardProps> = props => {
         )}
       </p>
       {props.project.link && (
-        <div style={{ 'margin-top': '15px' }}>
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href={props.project.link}
-            style={{ color: 'var(--text-color)' }}
-          >
-            {t('info.link')}
-          </a>
-        </div>
+        <a
+          rel="noreferrer"
+          target="_blank"
+          href={props.project.link}
+          class={styles.link}
+        >
+          {t('info.link')}
+        </a>
       )}
       {props.project.source_code && (
-        <div style={{ 'margin-top': '5px' }}>
-          <a
-            href={props.project.source_code}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--lower-text-color)' }}
-          >
-            {t('info.source-code')}
-          </a>
-        </div>
+        <a
+          href={props.project.source_code}
+          target="_blank"
+          rel="noreferrer"
+          class={styles.source_code}
+        >
+          {t('info.source-code')}
+        </a>
       )}
       <m.img
         src={props.project.img}
