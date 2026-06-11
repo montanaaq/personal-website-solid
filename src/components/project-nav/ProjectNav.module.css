@@ -55,7 +55,7 @@
   padding-inline-start: var(--project-nav-link-indent);
   color: var(--lower-text-color);
   font-size: var(--project-nav-link-size);
-  font-weight: 650;
+  font-weight: 500;
   line-height: 1.35;
   text-decoration: none;
   outline-offset: 3px;
@@ -74,7 +74,7 @@
     transform-origin: center;
   }
 
-  &:hover,
+
   &:focus-visible,
   &.active {
     color: var(--text-color);
@@ -157,7 +157,6 @@
 
   .project_nav_link {
     padding-inline-start: 0;
-    font-size: 1rem;
   }
 
   .project_nav_link::before,

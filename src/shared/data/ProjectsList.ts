@@ -21,7 +21,7 @@ export const PROJECTS_LIST: TProject[] = [
     url: 'schedulebot',
     img: 'assets/img/schedule_bot.webp',
     main_name: 'Schedule Bot',
-    isSupport: true,
+    isSupport: false,
     link: 'http://t.me/gymn33_bot',
     source_code: 'https://github.com/montanaaq/newScheduleBot',
     imageClassName: 'schedulebot_img'
