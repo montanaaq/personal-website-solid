@@ -1,7 +1,10 @@
-import { A } from '@solidjs/router'
 import type { Component } from 'solid-js'
+
+import { A } from '@solidjs/router'
 import { Motion as m } from 'solid-motionone'
+
 import { useI18n } from '@/shared/context/I18nContext'
+
 import styles from './NotFoundPage.module.css'
 
 const NotFoundPage: Component = () => {

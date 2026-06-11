@@ -1,5 +1,6 @@
 // i18n.ts
 import * as i18n from '@solid-primitives/i18n'
+
 import type * as en from './locales/en.ts'
 
 export type Locale = 'en' | 'ru'

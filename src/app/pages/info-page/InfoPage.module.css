@@ -2,14 +2,11 @@
   --anchor-list-block-size: 0rem;
   --project-focus-offset: clamp(4rem, 3.2rem + 4cqi, 7rem);
   --sticky-anchor-offset: calc(
-    var(--header-height) +
-    clamp(0.75rem, 0.5761rem + 0.8696cqi, 1.25rem)
+    var(--header-height) + clamp(0.75rem, 0.5761rem + 0.8696cqi, 1.25rem)
   );
   --project-anchor-offset: calc(
-    var(--sticky-anchor-offset) +
-    var(--anchor-list-block-size) +
-    var(--project-focus-offset) +
-    0.75rem
+    var(--sticky-anchor-offset) + var(--anchor-list-block-size) +
+      var(--project-focus-offset) + 0.75rem
   );
 
   position: relative;

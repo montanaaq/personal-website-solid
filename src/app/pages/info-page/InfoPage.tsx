@@ -6,6 +6,7 @@ import {
   onCleanup,
   onMount
 } from 'solid-js'
+
 import Footer from '@/components/footer/Footer'
 import ProjectCard from '@/components/project-card/ProjectCard'
 import ProjectNav from '@/components/project-nav/ProjectNav'
@@ -20,6 +21,7 @@ import {
   isProjectAlignedToScrollTarget,
   scrollToProject
 } from '@/shared/helpers/project-scroll'
+
 import styles from './InfoPage.module.css'
 
 const projectUrls = PROJECTS_LIST.map(project => project.url)

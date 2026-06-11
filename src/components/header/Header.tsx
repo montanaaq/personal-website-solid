@@ -1,6 +1,8 @@
 import { A } from '@solidjs/router'
 import { type Component, createEffect, createSignal } from 'solid-js'
+
 import { useI18n } from '@/shared/context/I18nContext'
+
 import styles from './Header.module.css'
 import LanguageToggle from './LanguageToggle'
 import ThemeToggle from './ThemeToggle'

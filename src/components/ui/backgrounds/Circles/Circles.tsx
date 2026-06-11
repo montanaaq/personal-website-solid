@@ -1,4 +1,5 @@
 import type { Component, JSX } from 'solid-js'
+
 import styles from './Circles.module.css'
 
 const Circles: Component<{ children: JSX.Element }> = ({ children }) => {

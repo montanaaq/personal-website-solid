@@ -1,7 +1,9 @@
+import { Router, type RouteSectionProps } from '@solidjs/router'
+
+import './index.css'
 /* @refresh reload */
 import { render, Suspense } from 'solid-js/web'
-import './index.css'
-import { Router, type RouteSectionProps } from '@solidjs/router'
+
 import LoadingFallback from './app/router/LoadingFallback'
 import { routes } from './app/router/routes'
 import Header from './components/header/Header'

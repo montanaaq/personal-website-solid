@@ -6,6 +6,7 @@ import {
   type JSX,
   useContext
 } from 'solid-js'
+
 import { fetchDictionary, type Locale } from '../i18n/i18n'
 import { enFlat } from '../i18n/locales/en'
 

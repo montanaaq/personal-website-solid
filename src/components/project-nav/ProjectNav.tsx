@@ -1,6 +1,9 @@
 import { type Component, For } from 'solid-js'
-import { useI18n } from '@/shared/context/I18nContext'
+
 import type { TProject } from '@/shared/data/ProjectsList'
+
+import { useI18n } from '@/shared/context/I18nContext'
+
 import styles from './ProjectNav.module.css'
 
 interface ProjectNavProps {

@@ -1,9 +1,11 @@
 import { type Component, createEffect, createSignal } from 'solid-js'
 import { Motion as m } from 'solid-motionone'
+
 import Footer from '@/components/footer/Footer'
 import Circles from '@/components/ui/backgrounds/Circles/Circles'
 import BlurText from '@/components/ui/blur-text/BlurText'
 import { useI18n } from '@/shared/context/I18nContext'
+
 import styles from './HomePage.module.css'
 
 const ViewPage: Component = () => {

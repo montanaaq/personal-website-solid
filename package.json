@@ -1,13 +1,15 @@
 {
   "name": "personal-website-solid",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "biome lint && knip",
-    "format": "biome format --write",
+    "lint": "oxlint & knip",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -18,12 +20,21 @@
     "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.15",
     "@types/node": "^25.9.1",
     "knip": "^6.14.1",
+    "lint-staged": "^17.0.7",
+    "oxfmt": "^0.54.0",
+    "oxlint": "^1.69.0",
     "typescript": "~6.0.3",
     "vite": "^8.0.14",
     "vite-plugin-solid": "^2.11.12"
+  },
+  "overrides": {
+    "vite": "^8.0.0-beta.13"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs}": "bun run lint",
+    "*": "bun run format"
   },
   "browserslist": {
     "production": [
@@ -37,10 +48,8 @@
       "last 1 safari version"
     ]
   },
-  "overrides": {
-    "vite": "^8.0.0-beta.13"
-  },
   "engines": {
     "node": ">=24.0.0"
-  }
+  },
+  "packageManager": "bun"
 }

@@ -1,5 +1,7 @@
-import { useLocation } from '@solidjs/router'
 import type { Component } from 'solid-js'
+
+import { useLocation } from '@solidjs/router'
+
 import styles from './Footer.module.css'
 
 const Footer: Component = () => {

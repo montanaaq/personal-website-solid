@@ -1,5 +1,5 @@
 /** biome-ignore-all lint/complexity/noImportantStyles: <explanation> */
-html[data-theme="light"] {
+html[data-theme='light'] {
   --text-color: rgb(37, 37, 37);
   --bg-color: #e8e8e8;
   --bg-color-rgb: 232, 232, 232;
@@ -46,7 +46,10 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: 0.2s;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   font-optical-sizing: auto;
   animation: animateOnLoad 0.5s linear;
   position: relative;
@@ -90,7 +93,7 @@ body {
   z-index: 10002 !important;
 }
 
-[data-sonner-toaster][data-position="bottom-left"] {
+[data-sonner-toaster][data-position='bottom-left'] {
   bottom: 20px !important;
   left: 20px !important;
   top: auto !important;
@@ -109,7 +112,7 @@ body {
 }
 
 @media only screen and (min-width: 1024px) {
-  [data-sonner-toaster][data-position="bottom-left"] {
+  [data-sonner-toaster][data-position='bottom-left'] {
     bottom: 40px !important;
     left: 40px !important;
   }
@@ -214,7 +217,7 @@ li a:hover {
 }
 
 @media only screen and (max-width: 768px) {
-  html[data-theme="light"] {
+  html[data-theme='light'] {
     --text-color: rgb(37, 37, 37);
     --bg-color: #e8e8e8;
     --circles-color: rgba(0, 0, 0, 0.2);

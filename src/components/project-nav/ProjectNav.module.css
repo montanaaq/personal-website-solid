@@ -66,14 +66,13 @@
     inset-block: 0.12rem;
     inset-inline-start: 0;
     inline-size: var(--project-nav-marker-size);
-    content: "";
+    content: '';
     background-color: var(--secondary);
     border-radius: 999px;
     opacity: 0;
     transform: scaleY(0.55);
     transform-origin: center;
   }
-
 
   &:focus-visible,
   &.active {
@@ -98,7 +97,7 @@
     inset-inline-start: anchor(left);
     inline-size: var(--project-nav-marker-size);
     block-size: anchor-size(height);
-    content: "";
+    content: '';
     background-color: var(--secondary);
     border-radius: 999px;
     pointer-events: none;

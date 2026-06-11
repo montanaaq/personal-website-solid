@@ -1,8 +1,10 @@
 import { type Component, createMemo, Show } from 'solid-js'
 import { Motion as m } from 'solid-motionone'
 import { toast } from 'sonner'
+
 import { useI18n } from '@/shared/context/I18nContext'
 import { useTheme } from '@/shared/context/ThemeContext'
+
 import MoonIcon from '../icons/MoonIcon'
 import SunIcon from '../icons/SunIcon'
 import styles from './Header.module.css'

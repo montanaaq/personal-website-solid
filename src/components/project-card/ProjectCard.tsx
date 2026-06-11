@@ -1,7 +1,11 @@
 import type { Component } from 'solid-js'
+
 import { Motion as m } from 'solid-motionone'
-import { useI18n } from '@/shared/context/I18nContext'
+
 import type { TProject } from '@/shared/data/ProjectsList'
+
+import { useI18n } from '@/shared/context/I18nContext'
+
 import styles from './ProjectCard.module.css'
 
 interface ProjectCardProps {
