@@ -19,7 +19,7 @@ const ProjectCard: Component<ProjectCardProps> = props => {
       inViewOptions={{ amount: 0.2, once: true }}
       transition={{ duration: 0.4, easing: 'ease-out' }}
     >
-      <h2 id={props.project.url}>
+      <h2 id={props.project.url} tabindex="-1">
         {props.project.main_name} ({t(props.project.dateKey)})
       </h2>
       <p class={styles.description}>{t(props.project.pKey)}</p>

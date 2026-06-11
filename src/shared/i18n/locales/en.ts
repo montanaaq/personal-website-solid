@@ -22,6 +22,7 @@ export const dict = {
     title: 'My',
     'title-highlight': 'projects',
     content: 'Content',
+    'on-this-page': 'On this page',
     status: 'Status:',
     supported: 'Supported',
     'not-supported': 'Not Supported',

@@ -20,6 +20,7 @@ export const dict = {
     title: 'Мои',
     'title-highlight': 'проекты',
     content: 'Содержание',
+    'on-this-page': 'На этой странице',
     status: 'Статус:',
     supported: 'Поддерживается',
     'not-supported': 'Не поддерживается',

@@ -12,7 +12,7 @@ export type TProject = {
   imageClassName?: string
 }
 
-export const projectsList: TProject[] = [
+export const PROJECTS_LIST: TProject[] = [
   {
     id: 1,
     nameKey: 'project.schedule-bot-name',

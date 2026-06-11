@@ -3,6 +3,10 @@
 }
 
 .container h2 {
+  scroll-margin-block-start: var(
+    --project-anchor-offset,
+    calc(var(--header-height) + var(--gap))
+  );
   word-break: keep-all;
   text-underline-offset: 4px;
   text-decoration-thickness: 0.05rem;
