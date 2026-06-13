@@ -1,5 +1,6 @@
 import { useNavigate } from '@solidjs/router'
 import { createMemo, mergeProps } from 'solid-js'
+import { Dynamic } from 'solid-js/web'
 import { Motion as m } from 'solid-motionone'
 
 type LinkConfig = {
@@ -9,6 +10,7 @@ type LinkConfig = {
 
 type BlurTextProps = {
   text?: string
+  as?: keyof HTMLElementTagNameMap
   delay?: number
   class?: string
   animateBy?: 'words' | 'letters'
@@ -47,6 +49,7 @@ const BlurText = (rawProps: BlurTextProps) => {
   const props = mergeProps(
     {
       text: '',
+      as: 'p' as keyof HTMLElementTagNameMap,
       delay: 200,
       class: '',
       animateBy: 'words' as const,
@@ -134,7 +137,11 @@ const BlurText = (rawProps: BlurTextProps) => {
   )
 
   return (
-    <p class={props.class} style="display: flex; flex-wrap: wrap;">
+    <Dynamic
+      component={props.as}
+      class={props.class}
+      style="display: flex; flex-wrap: wrap;"
+    >
       {elementsWithIds().map(({ segment, index }) => {
         const linkUrl = findLinkForWord(segment)
 
@@ -186,7 +193,7 @@ const BlurText = (rawProps: BlurTextProps) => {
           </m.span>
         )
       })}
-    </p>
+    </Dynamic>
   )
 }
 

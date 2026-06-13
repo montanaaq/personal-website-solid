@@ -8,15 +8,13 @@ import { useI18n } from '@/shared/context/I18nContext'
 
 import styles from './HomePage.module.css'
 
-const ViewPage: Component = () => {
-  const [showSecondMessage, setShowSecondMessage] = createSignal(false)
-  const [showThirdMessage, setShowThirdMessage] = createSignal(false)
+const HomePage: Component = () => {
+  const [step, setStep] = createSignal(0)
   const { t, locale } = useI18n()
 
   createEffect(() => {
     locale()
-    setShowSecondMessage(false)
-    setShowThirdMessage(false)
+    setStep(0)
   })
 
   return (
@@ -31,29 +29,32 @@ const ViewPage: Component = () => {
         >
           <m.div class={styles.info_container}>
             <BlurText
+              as="h1"
               text={t('homepage.welcome') ?? ''}
               delay={200}
               animateBy="words"
               direction="top"
-              onAnimationComplete={() => setShowSecondMessage(true)}
+              onAnimationComplete={() => setStep(1)}
               class={styles.blurred_text}
             />
 
-            {showSecondMessage() && (
+            {step() >= 1 && (
               <BlurText
+                as="h2"
                 text={t('homepage.projects') ?? ''}
                 delay={150}
                 animateBy="words"
                 direction="top"
                 linkWord={t('homepage.projects-word')}
                 linkTo="/info"
-                onAnimationComplete={() => setShowThirdMessage(true)}
+                onAnimationComplete={() => setStep(2)}
                 class={styles.blurred_text}
               />
             )}
 
-            {showThirdMessage() && (
+            {step() >= 2 && (
               <BlurText
+                as="h3"
                 text={t('homepage.links') ?? ''}
                 delay={150}
                 animateBy="words"
@@ -79,5 +80,4 @@ const ViewPage: Component = () => {
     </div>
   )
 }
-
-export default ViewPage
+export default HomePage

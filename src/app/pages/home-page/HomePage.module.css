@@ -1,3 +1,9 @@
+h1,
+h2,
+h3 {
+  font-weight: 500;
+}
+
 .main {
   position: relative;
   margin: auto;
@@ -47,7 +53,7 @@
   top: 35%;
   left: 50%;
   transform: translate(-50%, calc(-50% + 150px));
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 /* Планшеты (768px - 1024px) */
@@ -95,7 +101,7 @@
   }
 
   .blurred_text:nth-child(3) {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     transform: translate(-50%, calc(-50% + 150px));
     left: 50%;
   }
