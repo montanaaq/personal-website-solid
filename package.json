@@ -8,8 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint & knip",
     "lint:fix": "oxlint --fix",
-    "format": "oxfmt -c=./node_modules/@montanaaq/oxfmt/.oxfmtrc.json .",
-    "format:check": "oxfmt -c ./node_modules/@montanaaq/oxfmt/.oxfmtrc.json . --check",
+    "format": "oxfmt format",
+    "format:check": "oxfmt format --check",
     "preview": "vite preview"
   },
   "dependencies": {
