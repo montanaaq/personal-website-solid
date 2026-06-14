@@ -8,8 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint & knip",
     "lint:fix": "oxlint --fix",
-    "format": "oxfmt",
-    "format:check": "oxfmt --check",
+    "format": "oxfmt -c=./node_modules/@montanaaq/oxfmt/.oxfmtrc.json .",
+    "format:check": "oxfmt -c ./node_modules/@montanaaq/oxfmt/.oxfmtrc.json . --check",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -20,17 +20,17 @@
     "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "@types/node": "^25.9.1",
-    "knip": "^6.14.1",
+    "@montanaaq/oxfmt": "^0.1.0",
+    "@montanaaq/oxlint": "^0.1.0",
+    "@montanaaq/ts-config": "^0.1.0",
+    "@types/node": "^25.9.3",
+    "knip": "^6.16.1",
     "lint-staged": "^17.0.7",
     "oxfmt": "^0.54.0",
     "oxlint": "^1.69.0",
     "typescript": "~6.0.3",
-    "vite": "^8.0.14",
+    "vite": "^8.0.16",
     "vite-plugin-solid": "^2.11.12"
-  },
-  "overrides": {
-    "vite": "^8.0.0-beta.13"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,cjs}": "bun run lint",
