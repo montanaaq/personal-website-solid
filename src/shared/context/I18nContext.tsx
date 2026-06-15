@@ -1,19 +1,61 @@
 import * as i18n from '@solid-primitives/i18n'
 import {
   createContext,
+  createEffect,
   createResource,
   createSignal,
   type JSX,
+  onCleanup,
+  onMount,
   useContext
 } from 'solid-js'
 
+import { SUPPORTED_LOCALES } from '../constants/i18n.const'
 import { fetchDictionary, type Locale } from '../i18n/i18n'
 import { enFlat } from '../i18n/locales/en'
 
 type I18nContextValue = ReturnType<typeof useI18nState>
+const LANG_STORAGE_KEY = 'language'
+const DEFAULT_LOCALE: Locale = 'en'
+
+const isLocale = (value: string | null): value is Locale =>
+  SUPPORTED_LOCALES.includes(value as Locale)
+
+function getInitialLocale(): Locale {
+  if (typeof window === 'undefined') return DEFAULT_LOCALE
+
+  const storedLocale = localStorage.getItem(LANG_STORAGE_KEY)
+  return isLocale(storedLocale) ? storedLocale : DEFAULT_LOCALE
+}
 
 function useI18nState() {
-  const [locale, setLocale] = createSignal<Locale>('en')
+  const [locale, setLocale] = createSignal<Locale>(getInitialLocale())
+
+  createEffect(() => {
+    localStorage.setItem(LANG_STORAGE_KEY, locale())
+    document.documentElement.lang = locale()
+  })
+
+  onMount(() => {
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key !== LANG_STORAGE_KEY) return
+
+      const nextLocale = isLocale(event.newValue)
+        ? event.newValue
+        : DEFAULT_LOCALE
+
+      if (nextLocale !== locale()) {
+        setLocale(nextLocale)
+      }
+    }
+
+    window.addEventListener('storage', handleStorage)
+
+    onCleanup(() => {
+      window.removeEventListener('storage', handleStorage)
+    })
+  })
+
   const [dict] = createResource(locale, fetchDictionary, {
     initialValue: enFlat
   })

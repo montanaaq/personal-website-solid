@@ -1,5 +1,5 @@
 import { A } from '@solidjs/router'
-import { type Component, createEffect, createSignal } from 'solid-js'
+import { type Component, createSignal, onCleanup, onMount } from 'solid-js'
 
 import { useI18n } from '@/shared/context/I18nContext'
 
@@ -11,13 +11,13 @@ const Header: Component = () => {
   const { t } = useI18n()
   const [isScrolled, setIsScrolled] = createSignal(false)
 
-  createEffect(() => {
+  onMount(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    onCleanup(() => window.removeEventListener('scroll', handleScroll))
   })
 
   return (
