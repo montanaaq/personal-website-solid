@@ -1,0 +1,52 @@
+{
+  "name": "personal-website-solid",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint & knip",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "types": "tsc -b",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@solid-primitives/i18n": "^2.2.1",
+    "@solidjs/router": "^0.16.1",
+    "solid-js": "^1.9.14",
+    "solid-motionone": "^1.0.4",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@montanaaq/oxfmt": "^0.1.1",
+    "@montanaaq/oxlint": "^0.1.1",
+    "@montanaaq/ts-config": "^0.1.1",
+    "@types/node": "^25.9.5",
+    "knip": "^6.26.0",
+    "lefthook": "^2.1.10",
+    "oxfmt": "0.59.0",
+    "oxlint": "^1.74.0",
+    "typescript": "7",
+    "vite": "^8.1.4",
+    "vite-plugin-solid": "^2.11.12"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

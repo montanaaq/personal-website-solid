@@ -1,0 +1,23 @@
+# robots.txt for Montana — Personal Website
+# Last updated: 2025-11-10
+
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://montaanaq.netlify.app/sitemap.xml
+
+Host: https://montaanaq.netlify.app
+
+Disallow: /404
+Disallow: /error
+
+User-agent: Googlebot-Image
+Allow: /images/
+Disallow: /tmp/
+
+User-agent: Bingbot
+Allow: /

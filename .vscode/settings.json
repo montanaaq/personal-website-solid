@@ -1,0 +1,26 @@
+{
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit",
+    "source.fixAll.oxlint": "explicit"
+  },
+  "cSpell.words": [
+    "darkveil",
+    "gsap",
+    "leetcode",
+    "montanaaq",
+    "motionone",
+    "njsproj",
+    "ntvs",
+    "Nurislamov",
+    "oxfmt",
+    "oxlint",
+    "scanline",
+    "schedulebot",
+    "sneaknews",
+    "solidjs",
+    "sonner",
+    "Фронтенд"
+  ]
+}

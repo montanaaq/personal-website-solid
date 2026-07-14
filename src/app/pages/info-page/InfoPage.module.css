@@ -1,0 +1,98 @@
+.main_post {
+  --anchor-list-block-size: 0rem;
+  --project-focus-offset: clamp(4rem, 3.2rem + 4cqi, 7rem);
+  --sticky-anchor-offset: calc(
+    var(--header-height) + clamp(0.75rem, 0.5761rem + 0.8696cqi, 1.25rem)
+  );
+  --project-anchor-offset: calc(
+    var(--sticky-anchor-offset) + var(--anchor-list-block-size) + var(--project-focus-offset) +
+      0.75rem
+  );
+
+  position: relative;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  max-inline-size: min(
+    calc(100vi - var(--gap) * 2),
+    calc(var(--main-width) + 18rem + var(--gap) * 4)
+  );
+  margin: auto;
+  padding-block: calc(var(--header-height) + var(--gap)) var(--gap);
+  padding-inline: var(--gap);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+  container: info-page / inline-size;
+  scroll-behavior: smooth;
+  scroll-padding-block-start: var(--project-anchor-offset);
+  scroll-snap-type: block proximity;
+  overscroll-behavior-block: contain;
+}
+
+.header {
+  margin-block: 20px 40px;
+  margin-inline: 0;
+}
+
+.header h1 {
+  font-size: clamp(2.3rem, 2.2rem + 0.65cqi, 2.6rem);
+  font-weight: 600;
+  text-wrap: balance;
+
+  span {
+    color: var(--secondary);
+  }
+}
+
+.post_content {
+  container: projects-content / inline-size;
+}
+
+.post_content h2 {
+  text-align: start;
+  margin-block-end: 15px;
+  text-wrap: balance;
+  font-size: 2rem;
+}
+
+.projects_layout {
+  display: grid;
+  grid-template-columns: minmax(12rem, 16rem) minmax(0, var(--main-width));
+  align-items: start;
+  gap: clamp(1rem, 0.6522rem + 1.7391cqi, 2rem);
+}
+
+.projects_list {
+  min-inline-size: 0;
+}
+
+@container info-page (width <= 64rem) {
+  .projects_layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .post_content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .main_post {
+    --anchor-list-block-size: 4rem;
+    --project-focus-offset: 2rem;
+    --sticky-anchor-offset: calc(var(--header-height) + 0.75rem);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main_post {
+    --anchor-list-block-size: 5rem;
+    --project-focus-offset: 1.5rem;
+    --sticky-anchor-offset: calc(var(--header-height) + 0.5rem);
+
+    height: calc(100vh - var(--header-height));
+    padding-block: calc(var(--header-height) + 15px) 15px;
+    padding-inline: 15px;
+  }
+}
