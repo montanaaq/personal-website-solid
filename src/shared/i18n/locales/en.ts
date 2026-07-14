@@ -80,7 +80,12 @@ export const dict = {
     'alfa-ecosystem-name': 'News Website',
     'alfa-ecosystem-description':
       'A web application for convenient viewing of news from various sources in one place, with filtering and searching by categories.',
-    'alfa-ecosystem-date': 'November 2025'
+    'alfa-ecosystem-date': 'November 2025',
+
+    'juniors-bootcamp-cinema-name': 'Online cinema',
+    'juniors-bootcamp-cinema-description':
+      'A cinema web application, created for juniorsbootcamp to study new technologies',
+    'juniors-bootcamp-cinema-date': 'June 2026'
   }
 }
 

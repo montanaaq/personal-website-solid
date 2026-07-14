@@ -99,5 +99,17 @@ export const PROJECTS_LIST: TProject[] = [
     isSupport: false,
     source_code: 'https://github.com/montanaaq/alfa-ecosystem-task',
     imageClassName: 'alfa_ecosystem_img'
+  },
+  {
+    id: 8,
+    nameKey: 'project.juniors-bootcamp-cinema-name',
+    pKey: 'project.juniors-bootcamp-cinema-description',
+    dateKey: 'project.juniors-bootcamp-cinema-date',
+    url: 'juniors_bootcamp_cinema',
+    img: 'assets/img/juniors_bootcamp_cinema.webp',
+    main_name: 'Juniors Bootcamp Cinema',
+    isSupport: true,
+    source_code: 'https://github.com/montanaaq/juniors-bootcamp-cinema',
+    imageClassName: 'juniors_bootcamp_cinema_img'
   }
 ] as const

@@ -72,7 +72,7 @@
 .container
   img:not(.sneaknews_img):not(.uni_finder_website_img):not(.profile_website_img):not(
     .schedulebot_img
-  ):not(.desks_duels_img):not(.alfa_ecosystem_img) {
+  ):not(.desks_duels_img):not(.alfa_ecosystem_img):not(.juniors_bootcamp_cinema_img) {
   width: 350px;
   height: 350px;
 }
@@ -116,6 +116,10 @@
   height: 369px;
 }
 
+.juniors_bootcamp_cinema_img {
+  width: 828px;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     margin-top: 20px;
@@ -124,7 +128,7 @@
   .container
     img:not(.sneaknews_img):not(.uni_finder_website_img):not(.profile_website_img):not(
       .schedulebot_img
-    ):not(.desks_duels_img):not(.alfa_ecosystem_img) {
+    ):not(.desks_duels_img):not(.alfa_ecosystem_img):not(.juniors_bootcamp_cinema_img) {
     width: 280px;
     height: 280px;
   }
@@ -157,5 +161,9 @@
   .alfa_ecosystem_img {
     width: 380px;
     height: 260px;
+  }
+
+  .juniors_bootcamp_cinema_img {
+    width: 350px;
   }
 }
