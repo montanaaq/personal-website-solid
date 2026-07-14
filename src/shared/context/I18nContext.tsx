@@ -40,9 +40,7 @@ function useI18nState() {
     const handleStorage = (event: StorageEvent) => {
       if (event.key !== LANG_STORAGE_KEY) return
 
-      const nextLocale = isLocale(event.newValue)
-        ? event.newValue
-        : DEFAULT_LOCALE
+      const nextLocale = isLocale(event.newValue) ? event.newValue : DEFAULT_LOCALE
 
       if (nextLocale !== locale()) {
         setLocale(nextLocale)
@@ -60,10 +58,7 @@ function useI18nState() {
     initialValue: enFlat
   })
 
-  const translator = i18n.translator(
-    () => dict.latest ?? enFlat,
-    i18n.resolveTemplate
-  )
+  const translator = i18n.translator(() => dict.latest ?? enFlat, i18n.resolveTemplate)
   const t = translator as (key: string, ...args: any[]) => string
 
   return { t, locale, setLocale, dict }
@@ -76,11 +71,7 @@ interface ProviderProps {
 }
 
 export function I18nProvider(props: ProviderProps) {
-  return (
-    <I18nContext.Provider value={useI18nState()}>
-      {props.children}
-    </I18nContext.Provider>
-  )
+  return <I18nContext.Provider value={useI18nState()}>{props.children}</I18nContext.Provider>
 }
 
 export function useI18n() {

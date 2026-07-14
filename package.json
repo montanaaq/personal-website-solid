@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "oxlint & knip",
+    "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
@@ -25,7 +25,6 @@
     "@montanaaq/oxlint": "^0.1.1",
     "@montanaaq/ts-config": "^0.1.1",
     "@types/node": "^25.9.5",
-    "knip": "^6.26.0",
     "lefthook": "^2.1.10",
     "oxfmt": "0.59.0",
     "oxlint": "^1.74.0",

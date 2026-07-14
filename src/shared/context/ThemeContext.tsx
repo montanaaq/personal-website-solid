@@ -1,10 +1,4 @@
-import {
-  createContext,
-  createEffect,
-  createSignal,
-  type JSX,
-  useContext
-} from 'solid-js'
+import { createContext, createEffect, createSignal, type JSX, useContext } from 'solid-js'
 
 type Theme = 'dark' | 'light'
 
@@ -26,9 +20,7 @@ function getInitialTheme(): Theme {
   const stored = localStorage.getItem(STORAGE_KEY) as Theme | null
   if (stored !== null) return stored
 
-  return window.matchMedia('(prefers-color-scheme: light)').matches
-    ? 'light'
-    : 'dark'
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
 }
 
 type ThemeProviderProps = {
@@ -37,9 +29,7 @@ type ThemeProviderProps = {
 }
 
 export function ThemeProvider(props: ThemeProviderProps) {
-  const [theme, setThemeState] = createSignal<Theme>(
-    props.defaultTheme ?? getInitialTheme()
-  )
+  const [theme, setThemeState] = createSignal<Theme>(props.defaultTheme ?? getInitialTheme())
 
   createEffect(() => {
     const root = document.documentElement
@@ -54,9 +44,7 @@ export function ThemeProvider(props: ThemeProviderProps) {
   const toggleTheme = (coords?: Coords) => {
     const newTheme: Theme = theme() === 'light' ? 'dark' : 'light'
 
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     if (!document.startViewTransition || prefersReducedMotion) {
       setTheme(newTheme)
