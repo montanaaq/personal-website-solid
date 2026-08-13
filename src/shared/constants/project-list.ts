@@ -80,7 +80,7 @@ export const PROJECTS_LIST: TProject[] = [
     imageHeight: 1574,
     isSupport: true,
     link: 'https://montaanaq.netlify.app',
-    source_code: 'https://github.com/montanaaq/personal-website',
+    source_code: 'https://github.com/montanaaq/personal-website-solid',
     imageClassName: 'profile_website_img'
   },
   {
