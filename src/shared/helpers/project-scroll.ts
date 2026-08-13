@@ -27,7 +27,11 @@ export const isProjectAlignedToScrollTarget = (container: HTMLElement, projectUr
   return Math.abs(targetBlockStart - getScrollPaddingTop(container)) <= SCROLL_TARGET_TOLERANCE
 }
 
-export const scrollToProject = (container: HTMLElement, projectUrl: string) => {
+export const scrollToProject = (
+  container: HTMLElement,
+  projectUrl: string,
+  { focus = false }: { focus?: boolean } = {}
+) => {
   const target = document.getElementById(projectUrl)
 
   if (!target) {
@@ -44,6 +48,10 @@ export const scrollToProject = (container: HTMLElement, projectUrl: string) => {
     top,
     behavior: hasReducedMotion() ? 'auto' : 'smooth'
   })
+
+  if (focus) {
+    target.focus({ preventScroll: true })
+  }
 }
 
 export const getActiveProjectUrl = ({
@@ -100,7 +108,7 @@ export const createProjectScrollDelay = (delay = 110) => {
     clear()
 
     timer = window.setTimeout(
-      () => scrollToProject(container, projectUrl),
+      () => scrollToProject(container, projectUrl, { focus: true }),
       hasReducedMotion() ? 0 : delay
     )
   }

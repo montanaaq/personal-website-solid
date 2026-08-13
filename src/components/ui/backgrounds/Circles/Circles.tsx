@@ -5,18 +5,11 @@ import styles from './Circles.module.css'
 const Circles: Component<{ children: JSX.Element }> = ({ children }) => {
   return (
     <>
-      <ul class={styles.circles}>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <div class={styles.circles} aria-hidden="true">
+        {Array.from({ length: 10 }, () => (
+          <span />
+        ))}
+      </div>
       {children}
     </>
   )

@@ -60,6 +60,7 @@ const BlurText = (rawProps: BlurTextProps) => {
     rawProps
   )
   const navigate = useNavigate()
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   const elements = () =>
     props.animateBy === 'words' ? props.text.split(' ') : props.text.split('')
@@ -116,6 +117,7 @@ const BlurText = (rawProps: BlurTextProps) => {
   }
 
   const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots)
+  const finalSnapshot = toSnapshots.at(-1) ?? fromSnapshot
 
   const elementsWithIds = createMemo(() =>
     elements().map((segment, idx) => ({
@@ -141,9 +143,9 @@ const BlurText = (rawProps: BlurTextProps) => {
 
         return (
           <m.span
-            initial={fromSnapshot}
-            animate={animateKeyframes}
-            transition={spanTransition}
+            initial={prefersReducedMotion ? finalSnapshot : fromSnapshot}
+            animate={prefersReducedMotion ? finalSnapshot : animateKeyframes}
+            transition={prefersReducedMotion ? { duration: 0, delay: 0 } : spanTransition}
             onMotionComplete={
               index === elements().length - 1 ? props.onAnimationComplete : undefined
             }

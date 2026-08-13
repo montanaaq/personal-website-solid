@@ -1,20 +1,25 @@
 import type { Component } from 'solid-js'
 
 import { useI18n } from '@/shared/contexts/I18nContext'
+import { setPageMetadata } from '@/shared/helpers/page-metadata'
 import { A } from '@solidjs/router'
+import { createEffect } from 'solid-js'
 import { Motion as m } from 'solid-motionone'
 
 import styles from './NotFoundPage.module.css'
 
 const NotFoundPage: Component = () => {
   const { t } = useI18n()
+  createEffect(() => {
+    setPageMetadata({
+      title: t('meta.not-found-title'),
+      description: t('not-found.description'),
+      path: window.location.pathname,
+      noIndex: true
+    })
+  })
   return (
-    <m.div
-      class={styles.container}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
+    <main class={styles.container}>
       <m.div
         class={styles.content}
         initial={{ y: 20, opacity: 0 }}
@@ -28,7 +33,7 @@ const NotFoundPage: Component = () => {
           {t('not-found.home-button')}
         </A>
       </m.div>
-    </m.div>
+    </main>
   )
 }
 

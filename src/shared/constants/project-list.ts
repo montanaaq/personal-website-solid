@@ -1,11 +1,14 @@
+import type { TranslationKey } from '@/shared/i18n/i18n'
+
 export type TProject = {
   id: number
-  nameKey: string
-  pKey: string
-  dateKey: string
+  nameKey: TranslationKey
+  pKey: TranslationKey
+  dateKey: TranslationKey
   url: string
-  img?: string
-  main_name: string
+  img: string
+  imageWidth: number
+  imageHeight: number
   isSupport: boolean
   link?: string
   source_code?: string
@@ -19,10 +22,11 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.schedule-bot-description',
     dateKey: 'project.schedule-bot-date',
     url: 'schedulebot',
-    img: 'assets/img/schedule_bot.webp',
-    main_name: 'Schedule Bot',
+    img: '/assets/img/schedule_bot.webp',
+    imageWidth: 1278,
+    imageHeight: 956,
     isSupport: false,
-    link: 'http://t.me/gymn33_bot',
+    link: 'https://t.me/gymn33_bot',
     source_code: 'https://github.com/montanaaq/newScheduleBot',
     imageClassName: 'schedulebot_img'
   },
@@ -32,10 +36,11 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.sneak-news-bot-description',
     dateKey: 'project.sneak-news-bot-date',
     url: 'sneaknews',
-    img: 'assets/img/sneak_news_bot.webp',
-    main_name: 'SneakNews Bot',
+    img: '/assets/img/sneak_news_bot.webp',
+    imageWidth: 1042,
+    imageHeight: 1840,
     isSupport: false,
-    link: 'http://t.me/sneaknews_bot',
+    link: 'https://t.me/sneaknews_bot',
     imageClassName: 'sneaknews_img'
   },
   {
@@ -44,10 +49,11 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.uni-finder-bot-description',
     dateKey: 'project.uni-finder-bot-date',
     url: 'uni_finder_bot',
-    img: 'https://i.imgur.com/afWkow6.png',
-    main_name: 'UniFinder Bot',
+    img: '/assets/img/uni_finder_bot.webp',
+    imageWidth: 998,
+    imageHeight: 964,
     isSupport: false,
-    link: 'http://t.me/uni_finder_bot'
+    link: 'https://t.me/uni_finder_bot'
   },
   {
     id: 4,
@@ -55,8 +61,9 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.uni-finder-website-description',
     dateKey: 'project.uni-finder-website-date',
     url: 'uni_finder_website',
-    img: 'assets/img/uni_finder_site.webp',
-    main_name: 'UniFinder Site',
+    img: '/assets/img/uni_finder_site.webp',
+    imageWidth: 3240,
+    imageHeight: 1974,
     isSupport: false,
     link: 'https://uni-finder-mntq.netlify.app',
     source_code: 'https://github.com/montanaaq/uni-finder-website',
@@ -68,8 +75,9 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.personal-website-description',
     dateKey: 'project.personal-website-date',
     url: 'my_website',
-    img: 'assets/img/personal_site.webp',
-    main_name: 'My Personal Site',
+    img: '/assets/img/personal_site.webp',
+    imageWidth: 1886,
+    imageHeight: 1574,
     isSupport: true,
     link: 'https://montaanaq.netlify.app',
     source_code: 'https://github.com/montanaaq/personal-website',
@@ -81,8 +89,9 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.desks-duels-description',
     dateKey: 'project.desks-duels-date',
     url: 'desks_duels',
-    img: 'assets/img/desk_duels.webp',
-    main_name: 'Desks Duels',
+    img: '/assets/img/desk_duels.webp',
+    imageWidth: 596,
+    imageHeight: 1280,
     isSupport: false,
     link: 'https://t.me/desksduels_bot',
     source_code: 'https://github.com/montanaaq/desks_duels',
@@ -94,8 +103,9 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.alfa-ecosystem-description',
     dateKey: 'project.alfa-ecosystem-date',
     url: 'alfa_ecosystem',
-    img: 'assets/img/alfa_ecosystem.webp',
-    main_name: 'News SPA Webapp',
+    img: '/assets/img/alfa_ecosystem.webp',
+    imageWidth: 2610,
+    imageHeight: 1660,
     isSupport: false,
     source_code: 'https://github.com/montanaaq/alfa-ecosystem-task',
     imageClassName: 'alfa_ecosystem_img'
@@ -106,8 +116,9 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.juniors-bootcamp-cinema-description',
     dateKey: 'project.juniors-bootcamp-cinema-date',
     url: 'juniors_bootcamp_cinema',
-    img: 'assets/img/juniors_bootcamp_cinema.webp',
-    main_name: 'Juniors Bootcamp Cinema',
+    img: '/assets/img/juniors_bootcamp_cinema.webp',
+    imageWidth: 5088,
+    imageHeight: 3318,
     isSupport: true,
     source_code: 'https://github.com/montanaaq/juniors-bootcamp-cinema',
     imageClassName: 'juniors_bootcamp_cinema_img'

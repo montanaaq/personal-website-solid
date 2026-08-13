@@ -5,12 +5,20 @@
   margin-top: 30px;
 }
 
+.container:first-child {
+  margin-top: 0;
+}
+
 .container h2 {
   scroll-margin-block-start: var(--project-anchor-offset, calc(var(--header-height) + var(--gap)));
   word-break: keep-all;
   text-underline-offset: 4px;
   text-decoration-thickness: 0.05rem;
   margin-bottom: 10px;
+  font-size: clamp(1.25rem, 1.1rem + 0.5vi, 1.65rem);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .container .description {
@@ -56,11 +64,11 @@
 }
 
 .support {
-  color: #32cd32;
+  color: var(--support-color);
 }
 
 .not_support {
-  color: #ff5656;
+  color: var(--not-support-color);
 }
 
 .status {
@@ -73,51 +81,48 @@
   img:not(.sneaknews_img):not(.uni_finder_website_img):not(.profile_website_img):not(
     .schedulebot_img
   ):not(.desks_duels_img):not(.alfa_ecosystem_img):not(.juniors_bootcamp_cinema_img) {
-  width: 350px;
-  height: 350px;
+  inline-size: min(350px, 100%);
+  block-size: auto;
 }
 
 .container img {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
   border-radius: 15px;
   margin-bottom: 50px;
   margin-top: 15px;
 }
 
 .sneaknews_img {
-  width: 400px;
-  height: 700px;
+  inline-size: min(400px, 100%);
 }
 
 .uni_finder_website_img {
-  width: 600px;
-  height: 400px;
+  inline-size: min(600px, 100%);
 }
 
 .profile_website_img {
-  width: 501.6px;
-  height: 420px;
+  inline-size: min(501.6px, 100%);
   border: 0.1px solid var(--text-color);
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
 .schedulebot_img {
-  width: 540px;
-  height: 416px;
+  inline-size: min(540px, 100%);
 }
 
 .desks_duels_img {
-  width: 300px;
-  height: 650px;
+  inline-size: min(300px, 100%);
 }
 
 .alfa_ecosystem_img {
-  width: 540px;
-  height: 369px;
+  inline-size: min(540px, 100%);
 }
 
 .juniors_bootcamp_cinema_img {
-  width: 828px;
+  inline-size: min(828px, 100%);
 }
 
 @media only screen and (max-width: 768px) {
@@ -125,45 +130,43 @@
     margin-top: 20px;
   }
 
+  .container:first-child {
+    margin-top: 0;
+  }
+
   .container
     img:not(.sneaknews_img):not(.uni_finder_website_img):not(.profile_website_img):not(
       .schedulebot_img
     ):not(.desks_duels_img):not(.alfa_ecosystem_img):not(.juniors_bootcamp_cinema_img) {
-    width: 280px;
-    height: 280px;
+    inline-size: min(280px, 100%);
+    block-size: auto;
   }
 
   .sneaknews_img {
-    width: 300px;
-    height: 525px;
+    inline-size: min(300px, 100%);
   }
 
   .uni_finder_website_img {
-    width: 400px;
-    height: 267px;
+    inline-size: min(400px, 100%);
   }
 
   .profile_website_img {
-    width: 337.4px;
-    height: 280px;
+    inline-size: min(337.4px, 100%);
   }
 
   .schedulebot_img {
-    width: 400px;
-    height: 308px;
+    inline-size: min(400px, 100%);
   }
 
   .desks_duels_img {
-    width: 250px;
-    height: 542px;
+    inline-size: min(250px, 100%);
   }
 
   .alfa_ecosystem_img {
-    width: 380px;
-    height: 260px;
+    inline-size: min(380px, 100%);
   }
 
   .juniors_bootcamp_cinema_img {
-    width: 350px;
+    inline-size: min(350px, 100%);
   }
 }

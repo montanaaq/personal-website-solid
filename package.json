@@ -10,6 +10,7 @@
     "lint:fix": "oxlint --fix",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
+    "check": "bun run types && bun run lint && bun run format:check",
     "types": "tsc -b",
     "preview": "vite preview"
   },
@@ -18,11 +19,9 @@
     "@solidjs/router": "^0.16.1",
     "solid-js": "^1.9.14",
     "solid-motionone": "^1.0.4",
-    "sonner": "^2.0.7"
+    "solid-sonner": "^0.3.1"
   },
   "devDependencies": {
-    "@montanaaq/oxfmt": "^0.1.1",
-    "@montanaaq/oxlint": "^0.1.1",
     "@montanaaq/ts-config": "^0.1.1",
     "@types/node": "^25.9.5",
     "lefthook": "^2.1.10",
@@ -47,5 +46,5 @@
   "engines": {
     "node": ">=24.0.0"
   },
-  "packageManager": "bun"
+  "packageManager": "bun@1.2.4"
 }

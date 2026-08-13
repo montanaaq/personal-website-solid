@@ -1,65 +1,34 @@
-# My Personal Website
+# Montana's personal website
 
-## Overview
+A bilingual portfolio built with SolidJS, TypeScript and Vite.
 
-Welcome to my personal website! This application serves as a central hub for showcasing my projects, skills, and experiences. The main goal is to provide visitors with an engaging and informative platform, making it easier to explore who I am and what I do.
+## Requirements
 
-## Current Status
+- Node.js 24.14.0
+- Bun 1.2.4
 
-Right now, the primary focus is on establishing key functionalities and ensuring a stable foundation. I am prioritizing core features and content organization over design in this early stage.
+The expected versions are recorded in `.node-version`, `.bun-version` and `package.json`.
 
-## Future Improvements
+## Development
 
-In upcoming versions, I plan to refine the design and enhance the overall user experience. Potential improvements include:
-
-- A more polished user interface.
-- Integration of additional libraries or frameworks for styling.
-- Further optimization for performance and accessibility.
-
-## Getting Started
-
-To set up the website locally for development or customization, follow these steps:
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/your-username/my-personal-website
-   ```
-
-2. **Navigate to the Project Directory**
-
-   ```bash
-   cd my-personal-website
-   ```
-
-3. **Install Dependencies**
-
-   ```bash
-   npm install
-   ```
-
-4. **Run the Development Server**
-
-   ```bash
-   npm run dev
-   ```
-
-5. **Open Your Browser**  
-   Visit [http://localhost:5137](http://localhost:5137) to view the application in action.
-
-## Contributing
-
-I welcome contributions to help improve this personal website. If you’d like to contribute:
-
-1. **Fork the repository** on GitHub.
-2. **Create a new branch** for your feature or bugfix.
-3. **Make your changes** and test them thoroughly.
-4. **Submit a pull request** with a clear description of the modifications.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute as allowed by the license.
-
+```bash
+git clone https://github.com/montanaaq/personal-website-solid.git
+cd personal-website-solid
+bun install --frozen-lockfile
+bun run dev
 ```
 
+The development server is available at [http://localhost:5173](http://localhost:5173).
+
+## Quality checks
+
+```bash
+bun run check
+bun run build
 ```
+
+Lefthook formats staged files and runs linting and TypeScript checks before a commit.
+
+## Production
+
+Netlify builds the site with `bun run build` and serves the generated `dist` directory.

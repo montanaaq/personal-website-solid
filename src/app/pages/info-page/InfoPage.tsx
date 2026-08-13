@@ -5,6 +5,7 @@ import Circles from '@/components/ui/backgrounds/Circles/Circles'
 import { LOCALE_DISPLAY } from '@/shared/constants/i18n.const'
 import { PROJECTS_LIST } from '@/shared/constants/project-list'
 import { useI18n } from '@/shared/contexts/I18nContext'
+import { setPageMetadata } from '@/shared/helpers/page-metadata'
 import {
   createProjectScrollDelay,
   getActiveProjectUrl,
@@ -12,7 +13,15 @@ import {
   isProjectAlignedToScrollTarget,
   scrollToProject
 } from '@/shared/helpers/project-scroll'
-import { type Component, createMemo, createSignal, For, onCleanup, onMount } from 'solid-js'
+import {
+  type Component,
+  createEffect,
+  createMemo,
+  createSignal,
+  For,
+  onCleanup,
+  onMount
+} from 'solid-js'
 
 import styles from './InfoPage.module.css'
 
@@ -23,8 +32,16 @@ const Info: Component = () => {
   const { t, locale } = useI18n()
   const [activeProject, setActiveProject] = createSignal(PROJECTS_LIST[0]?.url ?? '')
   const [pendingProjectUrl, setPendingProjectUrl] = createSignal<string>()
-  const [scrollContainer, setScrollContainer] = createSignal<HTMLDivElement>()
+  const [scrollContainer, setScrollContainer] = createSignal<HTMLElement>()
   const scrollDelay = createProjectScrollDelay()
+
+  createEffect(() => {
+    setPageMetadata({
+      title: t('meta.projects-title'),
+      description: t('meta.projects-description'),
+      path: '/info'
+    })
+  })
 
   const formattedDate = createMemo(() =>
     new Intl.DateTimeFormat(LOCALE_DISPLAY[locale()], {
@@ -34,7 +51,7 @@ const Info: Component = () => {
     }).format(today)
   )
 
-  const updateActiveProject = (container: HTMLDivElement, headings: HTMLElement[]) => {
+  const updateActiveProject = (container: HTMLElement, headings: HTMLElement[]) => {
     const activeProjectUrl = getActiveProjectUrl({
       container,
       headings,
@@ -48,7 +65,10 @@ const Info: Component = () => {
     const pendingUrl = pendingProjectUrl()
 
     if (pendingUrl) {
-      if (isProjectAlignedToScrollTarget(container, pendingUrl)) {
+      if (
+        pendingUrl === activeProjectUrl ||
+        isProjectAlignedToScrollTarget(container, pendingUrl)
+      ) {
         setPendingProjectUrl(undefined)
       } else {
         return
@@ -58,8 +78,7 @@ const Info: Component = () => {
     setActiveProject(activeProjectUrl)
   }
 
-  const handleProjectAnchorClick = (projectUrl: string) => (event: MouseEvent) => {
-    event.preventDefault()
+  const handleProjectSelect = (projectUrl: string) => {
     const container = scrollContainer()
 
     if (!container) {
@@ -68,7 +87,9 @@ const Info: Component = () => {
 
     setPendingProjectUrl(projectUrl)
     setActiveProject(projectUrl)
-    window.history.pushState(null, '', `#${projectUrl}`)
+    if (window.location.hash !== `#${projectUrl}`) {
+      window.history.pushState(null, '', `#${projectUrl}`)
+    }
     scrollDelay.schedule(container, projectUrl)
   }
 
@@ -81,22 +102,65 @@ const Info: Component = () => {
       return
     }
 
-    const handleScroll = () => updateActiveProject(container, projectHeadings)
+    let scrollFrame: number | undefined
+    let historyFrame: number | undefined
+
+    const updateScrollState = () => {
+      scrollFrame = undefined
+      document.documentElement.dataset.pageScrolled = String(container.scrollTop > 50)
+      updateActiveProject(container, projectHeadings)
+    }
+
+    const handleScroll = () => {
+      if (scrollFrame !== undefined) return
+      scrollFrame = window.requestAnimationFrame(updateScrollState)
+    }
+
+    const syncFromLocation = () => {
+      historyFrame = undefined
+      const projectUrl = window.location.hash.slice(1)
+
+      if (projectUrls.includes(projectUrl)) {
+        setPendingProjectUrl(projectUrl)
+        setActiveProject(projectUrl)
+        scrollToProject(container, projectUrl, { focus: true })
+      } else {
+        setPendingProjectUrl(undefined)
+        setActiveProject(PROJECTS_LIST[0]?.url ?? '')
+        container.scrollTo({ top: 0, behavior: 'auto' })
+      }
+
+      handleScroll()
+    }
+
+    const handleHistoryNavigation = () => {
+      if (historyFrame !== undefined) {
+        window.cancelAnimationFrame(historyFrame)
+      }
+      historyFrame = window.requestAnimationFrame(syncFromLocation)
+    }
 
     container.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('popstate', handleHistoryNavigation)
+    window.addEventListener('hashchange', handleHistoryNavigation)
 
     if (projectUrls.includes(initialProject)) {
       setActiveProject(initialProject)
       window.requestAnimationFrame(() => {
-        scrollToProject(container, initialProject)
+        scrollToProject(container, initialProject, { focus: true })
         updateActiveProject(container, projectHeadings)
       })
     } else {
-      updateActiveProject(container, projectHeadings)
+      updateScrollState()
     }
 
     onCleanup(() => {
       container.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('popstate', handleHistoryNavigation)
+      window.removeEventListener('hashchange', handleHistoryNavigation)
+      if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame)
+      if (historyFrame !== undefined) window.cancelAnimationFrame(historyFrame)
+      delete document.documentElement.dataset.pageScrolled
     })
   })
 
@@ -107,29 +171,28 @@ const Info: Component = () => {
   return (
     <Circles>
       <div>
-        <div class={styles.main_post} ref={setScrollContainer}>
+        <main class={styles.main_post} ref={setScrollContainer}>
           <div class={styles.header}>
             <h1>
               {t('info.title')} <span>{t('info.title-highlight')}</span>
             </h1>
-            <div>
-              <span>{formattedDate()}</span>
-            </div>
+            <time datetime={today.toISOString().slice(0, 10)}>{formattedDate()}</time>
           </div>
           <div class={styles.post_content}>
-            <h2>{t('info.content')}</h2>
             <div class={styles.projects_layout}>
               <ProjectNav
                 projects={PROJECTS_LIST}
                 activeProject={activeProject()}
-                onProjectAnchorClick={handleProjectAnchorClick}
+                onProjectSelect={handleProjectSelect}
               />
               <div class={styles.projects_list}>
-                <For each={PROJECTS_LIST}>{project => <ProjectCard project={project} />}</For>
+                <For each={PROJECTS_LIST}>
+                  {(project, index) => <ProjectCard project={project} priority={index() === 0} />}
+                </For>
               </div>
             </div>
           </div>
-        </div>
+        </main>
         <Footer />
       </div>
     </Circles>

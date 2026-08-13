@@ -2,28 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Cache-Control" content="public, max-age=31536000, must-revalidate" />
-    <meta http-equiv="Pragma" content="cache" />
-    <meta http-equiv="Expires" content="31536000" />
-
-    <!-- Preconnect для Google Fonts -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
-
-    <!-- Загрузка только нужных весов шрифта -->
-    <!-- <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    /> -->
-
-    <link rel="modulepreload" href="/src/index.tsx" />
-
-    <link rel="shortcut icon" href="Favicon.webp" type="image/x-icon" />
+    <script>
+      try {
+        const storedTheme = localStorage.getItem('app-theme')
+        const theme =
+          storedTheme === 'light' || storedTheme === 'dark'
+            ? storedTheme
+            : matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark'
+        document.documentElement.dataset.theme = theme
+      } catch {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <link rel="icon" href="/Favicon.webp" type="image/webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Portfolio of Montana - Frontend Developer showcasing projects built from scratch"
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Montana | Frontend Developer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Montana - Frontend Developer showcasing projects built from scratch"
+    />
+    <meta property="og:url" content="https://montaanaq.netlify.app/" />
+    <meta
+      property="og:image"
+      content="https://montaanaq.netlify.app/assets/img/personal_site.webp"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Montana | Frontend Developer" />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Montana - Frontend Developer showcasing projects built from scratch"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://montaanaq.netlify.app/" />
     <title>Montana | Frontend Developer</title>
   </head>
   <body>

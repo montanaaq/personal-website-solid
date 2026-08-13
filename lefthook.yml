@@ -14,12 +14,14 @@ commit-msg:
         fi
 
 pre-commit:
-  parallel: true
   commands:
     format:
-      glob: '*.{js,jsx,ts,tsx,json,css,scss,md}'
-      run: bun format
+      glob: '*.{js,jsx,ts,tsx,json,css,scss,md,html,yml,yaml,toml}'
+      run: bun run format
       stage_fixed: true
     lint:
       glob: '*.{js,jsx,ts,tsx}'
-      run: bun lint
+      run: bun run lint
+    types:
+      glob: '*.{ts,tsx}'
+      run: bun run types

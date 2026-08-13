@@ -2,6 +2,8 @@ import type { Component } from 'solid-js'
 
 const LoadingFallback: Component = () => (
   <div
+    role="status"
+    aria-label="Loading page"
     style={{
       display: 'flex',
       'align-items': 'center',
@@ -12,6 +14,7 @@ const LoadingFallback: Component = () => (
   >
     <div style={{ 'text-align': 'center' }}>
       <div
+        aria-hidden="true"
         style={{
           width: '40px',
           height: '40px',

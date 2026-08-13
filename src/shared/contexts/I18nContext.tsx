@@ -16,7 +16,7 @@ import { enFlat } from '../i18n/locales/en'
 
 type I18nContextValue = ReturnType<typeof useI18nState>
 const LANG_STORAGE_KEY = 'language'
-const DEFAULT_LOCALE: Locale = 'en'
+const DEFAULT_LOCALE = 'en' as const satisfies Locale
 
 const isLocale = (value: string | null): value is Locale =>
   SUPPORTED_LOCALES.includes(value as Locale)
@@ -24,15 +24,26 @@ const isLocale = (value: string | null): value is Locale =>
 function getInitialLocale(): Locale {
   if (typeof window === 'undefined') return DEFAULT_LOCALE
 
-  const storedLocale = localStorage.getItem(LANG_STORAGE_KEY)
-  return isLocale(storedLocale) ? storedLocale : DEFAULT_LOCALE
+  try {
+    const storedLocale = localStorage.getItem(LANG_STORAGE_KEY)
+    if (isLocale(storedLocale)) return storedLocale
+  } catch {
+    return DEFAULT_LOCALE
+  }
+
+  const browserLocale = navigator.language.split('-')[0] ?? null
+  return isLocale(browserLocale) ? browserLocale : DEFAULT_LOCALE
 }
 
 function useI18nState() {
   const [locale, setLocale] = createSignal<Locale>(getInitialLocale())
 
   createEffect(() => {
-    localStorage.setItem(LANG_STORAGE_KEY, locale())
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, locale())
+    } catch {
+      // Language switching still works for the current session without storage.
+    }
     document.documentElement.lang = locale()
   })
 
@@ -54,14 +65,18 @@ function useI18nState() {
     })
   })
 
-  const [dict] = createResource(locale, fetchDictionary, {
-    initialValue: enFlat
-  })
+  const [dict] = createResource(
+    locale,
+    selectedLocale =>
+      selectedLocale === DEFAULT_LOCALE ? enFlat : fetchDictionary(selectedLocale),
+    {
+      initialValue: enFlat
+    }
+  )
 
   const translator = i18n.translator(() => dict.latest ?? enFlat, i18n.resolveTemplate)
-  const t = translator as (key: string, ...args: any[]) => string
 
-  return { t, locale, setLocale, dict }
+  return { t: translator, locale, setLocale, dict }
 }
 
 const I18nContext = createContext<I18nContextValue | undefined>(undefined)

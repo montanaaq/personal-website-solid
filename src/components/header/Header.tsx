@@ -1,6 +1,7 @@
+import type { Component } from 'solid-js'
+
 import { useI18n } from '@/shared/contexts/I18nContext'
 import { A } from '@solidjs/router'
-import { type Component, createSignal, onCleanup, onMount } from 'solid-js'
 
 import styles from './Header.module.css'
 import LanguageToggle from './LanguageToggle'
@@ -8,19 +9,9 @@ import ThemeToggle from './ThemeToggle'
 
 const Header: Component = () => {
   const { t } = useI18n()
-  const [isScrolled, setIsScrolled] = createSignal(false)
-
-  onMount(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    onCleanup(() => window.removeEventListener('scroll', handleScroll))
-  })
 
   return (
-    <header class={`${styles.header} ${isScrolled() ? styles.scrolled : ''}`}>
+    <header class={styles.header}>
       <div class={styles.wrapper}>
         <div>
           <A

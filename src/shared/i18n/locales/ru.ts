@@ -3,6 +3,19 @@ export const dict = {
     name: 'Montana'
   },
 
+  language: {
+    switch: 'Переключить язык на {{ language }}'
+  },
+
+  meta: {
+    'home-title': 'Montana | Фронтенд-разработчик',
+    'home-description':
+      'Портфолио Montana — фронтенд-разработчика, создающего качественные и доступные веб-интерфейсы.',
+    'projects-title': 'Проекты | Montana',
+    'projects-description': 'Избранные фронтенд-проекты Montana со ссылками и исходным кодом.',
+    'not-found-title': 'Страница не найдена | Montana'
+  },
+
   homepage: {
     welcome: 'Привет! Я Монтана (Амир Нурисламов), Фронтенд Разработчик',
     projects: 'Список моих проектов находится тут',
@@ -25,7 +38,8 @@ export const dict = {
     supported: 'Поддерживается',
     'not-supported': 'Не поддерживается',
     link: 'Ссылка',
-    'source-code': 'Исходный код'
+    'source-code': 'Исходный код',
+    'project-screenshot': 'скриншот проекта'
   },
 
   'not-found': {
@@ -41,6 +55,8 @@ export const dict = {
   },
 
   theme: {
+    'switch-to-light': 'Переключить на светлую тему',
+    'switch-to-dark': 'Переключить на тёмную тему',
     'light-activated': 'Светлая тема активирована!',
     'dark-activated': 'Темная тема активирована!'
   },
@@ -84,6 +100,6 @@ export const dict = {
     'juniors-bootcamp-cinema-name': 'Сайт кинотеатра',
     'juniors-bootcamp-cinema-description':
       'Онлайн кинотеатр, созданный для juniorsbootcamp для изучения новых технологий',
-    'juniors-bootcamp-cinema-date': 'Июль 2026'
+    'juniors-bootcamp-cinema-date': 'Июнь 2026'
   }
 }

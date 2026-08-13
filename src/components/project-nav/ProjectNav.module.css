@@ -1,11 +1,11 @@
 .project_nav {
-  --project-nav-pad: clamp(0.25rem, 0.2rem + 0.25cqi, 0.5rem);
-  --project-nav-gap: clamp(0.75rem, 0.55rem + 1cqi, 1.25rem);
-  --project-nav-title-gap: clamp(1rem, 0.8rem + 1cqi, 1.5rem);
-  --project-nav-marker-size: clamp(0.25rem, 0.2rem + 0.25cqi, 0.35rem);
-  --project-nav-link-indent: clamp(1.1rem, 0.95rem + 0.75cqi, 1.5rem);
-  --project-nav-link-size: clamp(1rem, 0.9rem + 0.5cqi, 1.25rem);
-  --project-nav-title-size: clamp(0.78rem, 0.74rem + 0.2cqi, 0.86rem);
+  --project-nav-pad: 0.25rem;
+  --project-nav-gap: 0.55rem;
+  --project-nav-title-gap: 0.75rem;
+  --project-nav-marker-size: 0.2rem;
+  --project-nav-link-indent: 0.85rem;
+  --project-nav-link-size: clamp(0.875rem, 0.84rem + 0.15cqi, 0.95rem);
+  --project-nav-title-size: 0.7rem;
 
   position: sticky;
   inset-block-start: var(--sticky-anchor-offset);
@@ -38,14 +38,18 @@
   margin-block-end: var(--project-nav-title-gap);
   color: var(--text-color);
   font-size: var(--project-nav-title-size);
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
 }
 
 .project_nav_item {
   margin: 0;
+}
+
+.project_nav_mobile {
+  display: none;
 }
 
 .project_nav_link {
@@ -55,7 +59,7 @@
   padding-inline-start: var(--project-nav-link-indent);
   color: var(--lower-text-color);
   font-size: var(--project-nav-link-size);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.35;
   text-decoration: none;
   outline-offset: 3px;
@@ -81,6 +85,7 @@
 
   &.active {
     anchor-name: --active-project-nav-link;
+    font-weight: 600;
   }
 
   &.active::before {
@@ -138,29 +143,80 @@
 
 @container info-page (width <= 64rem) {
   .project_nav {
-    position: static;
+    position: sticky;
+    inset-block-start: var(--sticky-anchor-offset);
     max-block-size: none;
-    max-inline-size: fit-content;
-    padding-block-start: 0;
+    max-inline-size: 100%;
+    padding: 0.4rem;
     overflow: visible;
+    background: color-mix(in srgb, var(--bg-color) 82%, transparent 18%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--text-color) 12%, transparent);
+    border-radius: 0.85rem;
+    box-shadow: 0 0.4rem 1.25rem rgba(0, 0, 0, 0.12);
   }
 
-  .project_nav_title {
-    margin-block-end: 0.9rem;
-  }
-
+  .project_nav_title,
   .project_nav_list {
-    display: grid;
-    gap: 0.7rem;
-  }
-
-  .project_nav_link {
-    padding-inline-start: 0;
-  }
-
-  .project_nav_link::before,
-  .project_nav_list::before {
     display: none;
+  }
+
+  .project_nav_mobile {
+    display: block;
+  }
+
+  .project_nav_mobile label {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .project_nav_select_wrapper {
+    position: relative;
+    min-inline-size: 0;
+  }
+
+  .project_nav_select_wrapper::after {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: 0.9rem;
+    inline-size: 0.45rem;
+    block-size: 0.45rem;
+    content: '';
+    border-block-end: 2px solid currentColor;
+    border-inline-end: 2px solid currentColor;
+    pointer-events: none;
+    transform: translateY(-65%) rotate(45deg);
+  }
+
+  .project_nav_mobile select {
+    inline-size: 100%;
+    min-block-size: 2.75rem;
+    padding: 0.45rem 2.25rem 0.45rem 0.75rem;
+    overflow: hidden;
+    color: var(--text-color);
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    appearance: none;
+    cursor: pointer;
+    background: color-mix(in srgb, var(--text-color) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text-color) 16%, transparent);
+    border-radius: 0.65rem;
+  }
+
+  .project_nav_mobile select:focus-visible {
+    outline: 3px solid var(--secondary);
+    outline-offset: 2px;
   }
 }
 

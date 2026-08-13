@@ -1,6 +1,6 @@
 .main_post {
   --anchor-list-block-size: 0rem;
-  --project-focus-offset: clamp(4rem, 3.2rem + 4cqi, 7rem);
+  --project-focus-offset: 1.25rem;
   --sticky-anchor-offset: calc(
     var(--header-height) + clamp(0.75rem, 0.5761rem + 0.8696cqi, 1.25rem)
   );
@@ -10,13 +10,13 @@
   );
 
   position: relative;
-  height: calc(100vh - var(--header-height) - var(--footer-height));
+  height: 100dvh;
   max-inline-size: min(
     calc(100vi - var(--gap) * 2),
     calc(var(--main-width) + 18rem + var(--gap) * 4)
   );
   margin: auto;
-  padding-block: calc(var(--header-height) + var(--gap)) var(--gap);
+  padding-block: calc(var(--header-height) + var(--gap)) calc(var(--footer-height) + var(--gap));
   padding-inline: var(--gap);
   overflow-y: auto;
   overflow-x: hidden;
@@ -32,7 +32,7 @@
 }
 
 .header {
-  margin-block: 20px 40px;
+  margin-block: 0 1.5rem;
   margin-inline: 0;
 }
 
@@ -50,18 +50,11 @@
   container: projects-content / inline-size;
 }
 
-.post_content h2 {
-  text-align: start;
-  margin-block-end: 15px;
-  text-wrap: balance;
-  font-size: 2rem;
-}
-
 .projects_layout {
   display: grid;
-  grid-template-columns: minmax(12rem, 16rem) minmax(0, var(--main-width));
+  grid-template-columns: minmax(10rem, 13.5rem) minmax(0, var(--main-width));
   align-items: start;
-  gap: clamp(1rem, 0.6522rem + 1.7391cqi, 2rem);
+  gap: clamp(1.5rem, 1.15rem + 1.75cqi, 2.5rem);
 }
 
 .projects_list {
@@ -71,28 +64,26 @@
 @container info-page (width <= 64rem) {
   .projects_layout {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .post_content h2 {
-    font-size: 1.5rem;
+    gap: 1rem;
   }
 }
 
 @media only screen and (max-width: 1024px) {
   .main_post {
-    --anchor-list-block-size: 4rem;
-    --project-focus-offset: 2rem;
+    --anchor-list-block-size: calc(var(--header-height) + var(--gap) + 3.5rem);
+    --project-focus-offset: 0.75rem;
     --sticky-anchor-offset: calc(var(--header-height) + 0.75rem);
   }
 }
 
 @media only screen and (max-width: 768px) {
   .main_post {
-    --anchor-list-block-size: 5rem;
-    --project-focus-offset: 1.5rem;
+    --anchor-list-block-size: calc(var(--header-height) + 15px + 3.5rem);
+    --project-focus-offset: 0.5rem;
     --sticky-anchor-offset: calc(var(--header-height) + 0.5rem);
 
-    height: calc(100vh - var(--header-height));
-    padding-block: calc(var(--header-height) + 15px) 15px;
+    height: 100dvh;
+    padding-block: calc(var(--header-height) + 15px) calc(var(--footer-height) + 15px);
     padding-inline: 15px;
   }
 }

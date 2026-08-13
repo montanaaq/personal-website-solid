@@ -1,6 +1,6 @@
 import type { Component } from 'solid-js'
 
-import { useLocation } from '@solidjs/router'
+import { A, useLocation } from '@solidjs/router'
 
 import styles from './Footer.module.css'
 
@@ -16,9 +16,9 @@ const Footer: Component = () => {
     <footer class={footerClass}>
       <span>
         © {year}&nbsp;
-        <a href="https://montaanaq.netlify.app" class={styles.footer_span}>
+        <A href="/" class={styles.footer_span}>
           Montana
-        </a>
+        </A>
         &nbsp;Powered by&nbsp;
         <a
           href="https://www.solidjs.com/"

@@ -5,6 +5,20 @@ export const dict = {
     name: 'Montana'
   },
 
+  language: {
+    switch: 'Switch language to {{ language }}'
+  },
+
+  meta: {
+    'home-title': 'Montana | Frontend Developer',
+    'home-description':
+      'Portfolio of Montana, a frontend developer building polished and accessible web interfaces.',
+    'projects-title': 'Projects | Montana',
+    'projects-description':
+      'Selected frontend projects by Montana with live links and source code.',
+    'not-found-title': 'Page not found | Montana'
+  },
+
   homepage: {
     welcome: "Hi! I'm Montana (Amir Nurislamov), Frontend Developer",
     projects: 'Here is some of my projects',
@@ -27,7 +41,8 @@ export const dict = {
     supported: 'Supported',
     'not-supported': 'Not Supported',
     link: 'Link',
-    'source-code': 'Source code'
+    'source-code': 'Source code',
+    'project-screenshot': 'project screenshot'
   },
 
   'not-found': {
@@ -43,6 +58,8 @@ export const dict = {
   },
 
   theme: {
+    'switch-to-light': 'Switch to light theme',
+    'switch-to-dark': 'Switch to dark theme',
     'light-activated': 'Light theme activated!',
     'dark-activated': 'Dark theme activated!'
   },

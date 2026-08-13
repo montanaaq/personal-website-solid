@@ -8,7 +8,7 @@ import styles from './ProjectNav.module.css'
 interface ProjectNavProps {
   projects: TProject[]
   activeProject: string
-  onProjectAnchorClick: (projectUrl: string) => (event: MouseEvent) => void
+  onProjectSelect: (projectUrl: string) => void
 }
 
 const ProjectNav: Component<ProjectNavProps> = props => {
@@ -28,7 +28,10 @@ const ProjectNav: Component<ProjectNavProps> = props => {
                   [styles.active]: props.activeProject === project.url
                 }}
                 aria-current={props.activeProject === project.url ? 'location' : undefined}
-                onClick={props.onProjectAnchorClick(project.url)}
+                onClick={event => {
+                  event.preventDefault()
+                  props.onProjectSelect(project.url)
+                }}
               >
                 {t(project.nameKey)}
               </a>
@@ -36,6 +39,20 @@ const ProjectNav: Component<ProjectNavProps> = props => {
           )}
         </For>
       </ul>
+      <div class={styles.project_nav_mobile}>
+        <label for="mobile-project-navigation">{t('info.on-this-page')}</label>
+        <div class={styles.project_nav_select_wrapper}>
+          <select
+            id="mobile-project-navigation"
+            value={props.activeProject}
+            onChange={event => props.onProjectSelect(event.currentTarget.value)}
+          >
+            <For each={props.projects}>
+              {project => <option value={project.url}>{t(project.nameKey)}</option>}
+            </For>
+          </select>
+        </div>
+      </div>
     </nav>
   )
 }

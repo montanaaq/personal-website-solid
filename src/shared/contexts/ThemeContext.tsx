@@ -17,8 +17,12 @@ const STORAGE_KEY = 'app-theme'
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'dark'
 
-  const stored = localStorage.getItem(STORAGE_KEY) as Theme | null
-  if (stored !== null) return stored
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    if (stored === 'dark' || stored === 'light') return stored
+  } catch {
+    return 'dark'
+  }
 
   return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
 }
@@ -34,7 +38,11 @@ export function ThemeProvider(props: ThemeProviderProps) {
   createEffect(() => {
     const root = document.documentElement
     root.setAttribute('data-theme', theme())
-    localStorage.setItem(STORAGE_KEY, theme())
+    try {
+      localStorage.setItem(STORAGE_KEY, theme())
+    } catch {
+      // The selected theme still works for the current session when storage is unavailable.
+    }
   })
 
   const setTheme = (newTheme: Theme) => {
