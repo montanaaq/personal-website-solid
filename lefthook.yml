@@ -1,3 +1,9 @@
+prepare-commit-msg:
+  commands:
+    commitizen:
+      interactive: true
+      run: bunx cz --hook || true
+
 commit-msg:
   commands:
     prepend-branch:

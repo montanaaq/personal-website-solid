@@ -12,7 +12,7 @@ import {
 
 import { SUPPORTED_LOCALES } from '../constants/i18n.const'
 import { fetchDictionary, type Locale } from '../i18n/i18n'
-import { enFlat } from '../i18n/locales/en'
+import en from '../i18n/locales/en.json'
 
 type I18nContextValue = ReturnType<typeof useI18nState>
 const LANG_STORAGE_KEY = 'language'
@@ -67,14 +67,13 @@ function useI18nState() {
 
   const [dict] = createResource(
     locale,
-    selectedLocale =>
-      selectedLocale === DEFAULT_LOCALE ? enFlat : fetchDictionary(selectedLocale),
+    selectedLocale => (selectedLocale === DEFAULT_LOCALE ? en : fetchDictionary(selectedLocale)),
     {
-      initialValue: enFlat
+      initialValue: en
     }
   )
 
-  const translator = i18n.translator(() => dict.latest ?? enFlat, i18n.resolveTemplate)
+  const translator = i18n.translator(() => dict.latest ?? en, i18n.resolveTemplate)
 
   return { t: translator, locale, setLocale, dict }
 }

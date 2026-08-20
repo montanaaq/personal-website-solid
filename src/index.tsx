@@ -2,6 +2,7 @@
 import type { JSX } from 'solid-js'
 
 import './index.css'
+import { MetaProvider } from '@solidjs/meta'
 import { Router, type RouteSectionProps } from '@solidjs/router'
 import { render, Suspense } from 'solid-js/web'
 import { Toaster } from 'solid-sonner'
@@ -32,11 +33,13 @@ const ThemedLayout = (props: { children: JSX.Element }) => {
 
 const RootLayout = (props: RouteSectionProps) => {
   return (
-    <I18nProvider>
-      <ThemeProvider>
-        <ThemedLayout>{props.children}</ThemedLayout>
-      </ThemeProvider>
-    </I18nProvider>
+    <MetaProvider>
+      <I18nProvider>
+        <ThemeProvider>
+          <ThemedLayout>{props.children}</ThemedLayout>
+        </ThemeProvider>
+      </I18nProvider>
+    </MetaProvider>
   )
 }
 

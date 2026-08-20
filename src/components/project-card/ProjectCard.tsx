@@ -58,7 +58,7 @@ const ProjectCard: Component<ProjectCardProps> = props => {
           {t('info.source-code')}
         </a>
       )}
-      <m.img
+      <img
         src={props.project.img}
         alt={`${t(props.project.nameKey)} — ${t('info.project-screenshot')}`}
         width={props.project.imageWidth}
@@ -67,9 +67,6 @@ const ProjectCard: Component<ProjectCardProps> = props => {
         fetchpriority={props.priority ? 'high' : undefined}
         decoding="async"
         class={props.project.imageClassName ? styles[props.project.imageClassName] : ''}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
       />
     </m.div>
   )
