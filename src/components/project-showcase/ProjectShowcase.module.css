@@ -70,7 +70,7 @@
 
 @media only screen and (max-width: 1024px) {
   .main_post {
-    --anchor-list-block-size: calc(var(--header-height) + var(--gap) + 3.5rem);
+    --anchor-list-block-size: 0rem;
     --project-focus-offset: 0.75rem;
     --sticky-anchor-offset: calc(var(--header-height) + 0.75rem);
   }
@@ -78,7 +78,7 @@
 
 @media only screen and (max-width: 768px) {
   .main_post {
-    --anchor-list-block-size: calc(var(--header-height) + 15px + 3.5rem);
+    --anchor-list-block-size: 0rem;
     --project-focus-offset: 0.5rem;
     --sticky-anchor-offset: calc(var(--header-height) + 0.5rem);
 

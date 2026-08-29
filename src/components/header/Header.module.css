@@ -124,11 +124,46 @@
   opacity: 1;
 }
 
+.project_menu_button {
+  display: none;
+  inline-size: 22px;
+  block-size: 22px;
+  padding: 6px;
+  place-items: center;
+  color: var(--text-color);
+  line-height: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.project_menu_button svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.75;
+}
+
+.project_menu_button:hover {
+  background: color-mix(in srgb, var(--text-color) 8%, transparent);
+}
+
 .toggle_light_mode:focus-visible,
 .language_toggle:focus-visible,
+.project_menu_button:focus-visible,
 .header a:focus-visible {
   outline: 3px solid var(--secondary);
   outline-offset: 3px;
+}
+
+@media only screen and (max-width: 1120px) {
+  .project_menu_button {
+    display: grid;
+  }
 }
 
 @media only screen and (max-width: 1024px) {

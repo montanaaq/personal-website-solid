@@ -13,47 +13,86 @@ interface ProjectNavProps {
 
 const ProjectNav: Component<ProjectNavProps> = props => {
   const { t } = useI18n()
+  let projectDialog: HTMLDialogElement | undefined
+
+  const selectProject = (projectUrl: string) => {
+    projectDialog?.close()
+    props.onProjectSelect(projectUrl)
+  }
 
   return (
-    <nav class={styles.project_nav} aria-label={t('info.content')}>
-      <p class={styles.project_nav_title}>{t('info.on-this-page')}</p>
-      <ul class={styles.project_nav_list}>
-        <For each={props.projects}>
-          {(project, index) => (
-            <li class={styles.project_nav_item} style={`--project-index: ${index()}`}>
-              <a
-                href={`#${project.url}`}
-                class={styles.project_nav_link}
-                classList={{
-                  [styles.active]: props.activeProject === project.url
-                }}
-                aria-current={props.activeProject === project.url ? 'location' : undefined}
-                onClick={event => {
-                  event.preventDefault()
-                  props.onProjectSelect(project.url)
-                }}
-              >
-                {t(project.nameKey)}
-              </a>
-            </li>
-          )}
-        </For>
-      </ul>
-      <div class={styles.project_nav_mobile}>
-        <label for="mobile-project-navigation">{t('info.on-this-page')}</label>
-        <div class={styles.project_nav_select_wrapper}>
-          <select
-            id="mobile-project-navigation"
-            value={props.activeProject}
-            onChange={event => props.onProjectSelect(event.currentTarget.value)}
+    <>
+      <nav class={styles.project_nav} aria-label={t('info.content')}>
+        <p class={styles.project_nav_title}>{t('info.on-this-page')}</p>
+        <ul class={styles.project_nav_list}>
+          <For each={props.projects}>
+            {(project, index) => (
+              <li class={styles.project_nav_item} style={`--project-index: ${index()}`}>
+                <a
+                  href={`#${project.url}`}
+                  class={styles.project_nav_link}
+                  classList={{
+                    [styles.active]: props.activeProject === project.url
+                  }}
+                  aria-current={props.activeProject === project.url ? 'location' : undefined}
+                  onClick={event => {
+                    event.preventDefault()
+                    props.onProjectSelect(project.url)
+                  }}
+                >
+                  {t(project.nameKey)}
+                </a>
+              </li>
+            )}
+          </For>
+        </ul>
+      </nav>
+      <dialog
+        id="project-navigation-dialog"
+        class={styles.project_dialog}
+        aria-labelledby="project-navigation-dialog-title"
+        ref={element => (projectDialog = element)}
+        onClick={event => {
+          if (event.target === event.currentTarget) projectDialog?.close()
+        }}
+      >
+        <div class={styles.project_dialog_header}>
+          <h2 id="project-navigation-dialog-title">{t('info.projects-menu-title')}</h2>
+          <button
+            type="button"
+            class={styles.project_dialog_close}
+            aria-label={t('info.close-project-menu')}
+            onClick={() => projectDialog?.close()}
           >
-            <For each={props.projects}>
-              {project => <option value={project.url}>{t(project.nameKey)}</option>}
-            </For>
-          </select>
+            ×
+          </button>
         </div>
-      </div>
-    </nav>
+        <nav aria-label={t('info.content')}>
+          <ul class={styles.project_dialog_list}>
+            <For each={props.projects}>
+              {project => (
+                <li>
+                  <a
+                    href={`#${project.url}`}
+                    class={styles.project_dialog_link}
+                    classList={{
+                      [styles.active]: props.activeProject === project.url
+                    }}
+                    aria-current={props.activeProject === project.url ? 'location' : undefined}
+                    onClick={event => {
+                      event.preventDefault()
+                      selectProject(project.url)
+                    }}
+                  >
+                    {t(project.nameKey)}
+                  </a>
+                </li>
+              )}
+            </For>
+          </ul>
+        </nav>
+      </dialog>
+    </>
   )
 }
 

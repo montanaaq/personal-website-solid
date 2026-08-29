@@ -1,14 +1,18 @@
 import type { TranslationKey } from '@/shared/i18n/i18n'
 
+export type TProjectImage = {
+  src: string
+  width: number
+  height: number
+}
+
 export type TProject = {
   id: number
   nameKey: TranslationKey
   pKey: TranslationKey
   dateKey: TranslationKey
   url: string
-  img: string
-  imageWidth: number
-  imageHeight: number
+  img: readonly [TProjectImage, ...TProjectImage[]]
   isSupport: boolean
   link?: string
   source_code?: string
@@ -22,9 +26,7 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.schedule-bot-description',
     dateKey: 'project.schedule-bot-date',
     url: 'schedulebot',
-    img: '/assets/img/schedule_bot.webp',
-    imageWidth: 1278,
-    imageHeight: 956,
+    img: [{ src: '/assets/img/schedule_bot.webp', width: 1278, height: 956 }],
     isSupport: false,
     link: 'https://t.me/gymn33_bot',
     source_code: 'https://github.com/montanaaq/newScheduleBot',
@@ -36,9 +38,7 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.sneak-news-bot-description',
     dateKey: 'project.sneak-news-bot-date',
     url: 'sneaknews',
-    img: '/assets/img/sneak_news_bot.webp',
-    imageWidth: 1042,
-    imageHeight: 1840,
+    img: [{ src: '/assets/img/sneak_news_bot.webp', width: 1042, height: 1840 }],
     isSupport: false,
     link: 'https://t.me/sneaknews_bot',
     imageClassName: 'sneaknews_img'
@@ -49,9 +49,7 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.uni-finder-bot-description',
     dateKey: 'project.uni-finder-bot-date',
     url: 'uni_finder_bot',
-    img: '/assets/img/uni_finder_bot.webp',
-    imageWidth: 998,
-    imageHeight: 964,
+    img: [{ src: '/assets/img/uni_finder_bot.webp', width: 998, height: 964 }],
     isSupport: false,
     link: 'https://t.me/uni_finder_bot'
   },
@@ -61,9 +59,7 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.uni-finder-website-description',
     dateKey: 'project.uni-finder-website-date',
     url: 'uni_finder_website',
-    img: '/assets/img/uni_finder_site.webp',
-    imageWidth: 3240,
-    imageHeight: 1974,
+    img: [{ src: '/assets/img/uni_finder_site.webp', width: 3240, height: 1974 }],
     isSupport: false,
     link: 'https://uni-finder-mntq.netlify.app',
     source_code: 'https://github.com/montanaaq/uni-finder-website',
@@ -75,9 +71,7 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.personal-website-description',
     dateKey: 'project.personal-website-date',
     url: 'my_website',
-    img: '/assets/img/personal_site.webp',
-    imageWidth: 1886,
-    imageHeight: 1574,
+    img: [{ src: '/assets/img/personal_site.webp', width: 1886, height: 1574 }],
     isSupport: true,
     link: 'https://montaanaq.netlify.app',
     source_code: 'https://github.com/montanaaq/personal-website-solid',
@@ -89,9 +83,7 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.desks-duels-description',
     dateKey: 'project.desks-duels-date',
     url: 'desks_duels',
-    img: '/assets/img/desk_duels.webp',
-    imageWidth: 596,
-    imageHeight: 1280,
+    img: [{ src: '/assets/img/desk_duels.webp', width: 596, height: 1280 }],
     isSupport: false,
     link: 'https://t.me/desksduels_bot',
     source_code: 'https://github.com/montanaaq/desks_duels',
@@ -103,9 +95,7 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.alfa-ecosystem-description',
     dateKey: 'project.alfa-ecosystem-date',
     url: 'alfa_ecosystem',
-    img: '/assets/img/alfa_ecosystem.webp',
-    imageWidth: 2610,
-    imageHeight: 1660,
+    img: [{ src: '/assets/img/alfa_ecosystem.webp', width: 2610, height: 1660 }],
     isSupport: false,
     source_code: 'https://github.com/montanaaq/alfa-ecosystem-task',
     imageClassName: 'alfa_ecosystem_img'
@@ -116,11 +106,31 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.juniors-bootcamp-cinema-description',
     dateKey: 'project.juniors-bootcamp-cinema-date',
     url: 'juniors_bootcamp_cinema',
-    img: '/assets/img/juniors_bootcamp_cinema.webp',
-    imageWidth: 5088,
-    imageHeight: 3318,
+    img: [{ src: '/assets/img/juniors_bootcamp_cinema.webp', width: 5088, height: 3318 }],
     isSupport: true,
     source_code: 'https://github.com/montanaaq/juniors-bootcamp-cinema',
     imageClassName: 'juniors_bootcamp_cinema_img'
+  },
+  {
+    id: 9,
+    nameKey: 'project.baytik-platform-name',
+    pKey: 'project.baytik-platform-description',
+    dateKey: 'project.baytik-platform-date',
+    url: 'baytik_platform',
+    img: [
+      {
+        src: '/assets/img/baytik-platform-home.webp',
+        width: 1920,
+        height: 1120
+      },
+      {
+        src: '/assets/img/baytik-platform-dashboard.webp',
+        width: 1920,
+        height: 1120
+      }
+    ],
+    isSupport: true,
+    link: 'https://edu.baytik-kazan.ru',
+    imageClassName: 'baytik_platform_img'
   }
 ] as const

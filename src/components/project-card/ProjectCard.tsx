@@ -1,6 +1,7 @@
 import type { TProject } from '@/shared/constants/project-list'
 import type { Component } from 'solid-js'
 
+import ProjectGallery from '@/components/project-gallery/ProjectGallery'
 import { useI18n } from '@/shared/contexts/I18nContext'
 import { Motion as m } from 'solid-motionone'
 
@@ -58,15 +59,11 @@ const ProjectCard: Component<ProjectCardProps> = props => {
           {t('info.source-code')}
         </a>
       )}
-      <img
-        src={props.project.img}
-        alt={`${t(props.project.nameKey)} — ${t('info.project-screenshot')}`}
-        width={props.project.imageWidth}
-        height={props.project.imageHeight}
-        loading={props.priority ? 'eager' : 'lazy'}
-        fetchpriority={props.priority ? 'high' : undefined}
-        decoding="async"
-        class={props.project.imageClassName ? styles[props.project.imageClassName] : ''}
+      <ProjectGallery
+        images={props.project.img}
+        projectName={t(props.project.nameKey)}
+        imageClassName={props.project.imageClassName}
+        priority={props.priority}
       />
     </m.div>
   )

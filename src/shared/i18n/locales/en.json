@@ -23,6 +23,13 @@
   "info.link": "Link",
   "info.source-code": "Source code",
   "info.project-screenshot": "project screenshot",
+  "info.project-gallery": "Screenshots of {{ project }}",
+  "info.previous-screenshot": "Previous screenshot",
+  "info.next-screenshot": "Next screenshot",
+  "info.screenshot-position": "Screenshot {{ current }} of {{ total }}",
+  "info.open-project-menu": "Open project menu",
+  "info.close-project-menu": "Close project menu",
+  "info.projects-menu-title": "My projects",
   "not-found.title": "Page Not Found",
   "not-found.description": "The page you're looking for doesn't exist or has been moved.",
   "not-found.home-button": "Go Back Home",
@@ -56,5 +63,8 @@
   "project.alfa-ecosystem-date": "November 2025",
   "project.juniors-bootcamp-cinema-name": "Online cinema",
   "project.juniors-bootcamp-cinema-description": "A cinema web application, created for juniorsbootcamp to study new technologies",
-  "project.juniors-bootcamp-cinema-date": "June 2026"
+  "project.juniors-bootcamp-cinema-date": "June 2026",
+  "project.baytik-platform-name": "Baytik Educational Platform",
+  "project.baytik-platform-description": "An online platform for training counselors at the Baytik children's camp in Kazan. I currently maintain and develop the project.",
+  "project.baytik-platform-date": "August 2026"
 }
