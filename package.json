@@ -24,12 +24,12 @@
   },
   "devDependencies": {
     "@montanaaq/ts-config": "^0.1.1",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.4.1",
     "commitizen": "^4.3.2",
     "cz-conventional-changelog": "^3.3.0",
-    "lefthook": "^2.1.10",
-    "oxfmt": "0.64.0",
-    "oxlint": "^1.79.0",
+    "lefthook": "^2.1.12",
+    "oxfmt": "0.66.0",
+    "oxlint": "^1.81.0",
     "typescript": "^7.0.2",
     "vite": "^8.2.2",
     "vite-plugin-solid": "^2.11.14"
