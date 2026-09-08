@@ -1,8 +1,6 @@
 import { Link, Meta, Title } from '@solidjs/meta'
 import { type Component, createMemo } from 'solid-js'
 
-const SITE_URL = 'https://montaanaq.netlify.app'
-
 type PageMetadataProps = {
   title: string
   description: string
@@ -11,7 +9,9 @@ type PageMetadataProps = {
 }
 
 const PageMetadata: Component<PageMetadataProps> = props => {
-  const canonicalUrl = createMemo(() => new URL(props.path, SITE_URL).toString())
+  const canonicalUrl = createMemo(() =>
+    new URL(props.path, import.meta.env.VITE_SITE_URL).toString()
+  )
 
   return (
     <>

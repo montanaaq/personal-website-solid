@@ -106,7 +106,12 @@ export const PROJECTS_LIST: TProject[] = [
     pKey: 'project.juniors-bootcamp-cinema-description',
     dateKey: 'project.juniors-bootcamp-cinema-date',
     url: 'juniors_bootcamp_cinema',
-    img: [{ src: '/assets/img/juniors_bootcamp_cinema.webp', width: 5088, height: 3318 }],
+    img: [
+      { src: '/assets/img/jb-cinema/jb_main.webp', width: 5088, height: 3318 },
+      { src: '/assets/img/jb-cinema/jb_select.webp', width: 5088, height: 3318 },
+      { src: '/assets/img/jb-cinema/jb_profile.webp', width: 5088, height: 3318 },
+      { src: '/assets/img/jb-cinema/jb_tickets.webp', width: 5088, height: 3318 }
+    ],
     isSupport: true,
     source_code: 'https://github.com/montanaaq/juniors-bootcamp-cinema',
     imageClassName: 'juniors_bootcamp_cinema_img'
@@ -119,12 +124,12 @@ export const PROJECTS_LIST: TProject[] = [
     url: 'baytik_platform',
     img: [
       {
-        src: '/assets/img/baytik-platform-home.webp',
+        src: '/assets/img/baytik-platform/baytik-platform-home.webp',
         width: 1920,
         height: 1120
       },
       {
-        src: '/assets/img/baytik-platform-dashboard.webp',
+        src: '/assets/img/baytik-platform/baytik-platform-dashboard.webp',
         width: 1920,
         height: 1120
       }
