@@ -4,19 +4,10 @@ import FaultyTerminal from '@/components/ui/backgrounds/FaultyTerminal/FaultyTer
 import BlurText from '@/components/ui/blur-text/BlurText'
 import { useI18n } from '@/shared/contexts/I18nContext'
 import { useTheme } from '@/shared/contexts/ThemeContext'
+import { readSecondaryColor } from '@/shared/helpers/read-secondary-color'
 import { createMemo, createSignal, onCleanup, onMount, type Component } from 'solid-js'
 
 import styles from './HomePage.module.css'
-
-const FALLBACK_TINT = '#1876d2'
-
-const readSecondaryColor = () => {
-  if (typeof document === 'undefined') return FALLBACK_TINT
-
-  const value = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim()
-
-  return value || FALLBACK_TINT
-}
 
 const HomePage: Component = () => {
   const { t } = useI18n()
