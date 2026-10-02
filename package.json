@@ -17,6 +17,7 @@
     "@solid-primitives/i18n": "^2.2.1",
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^1.0.0",
+    "@voidzero-dev/vite-plus-core": "1.0.0",
     "ogl": "^1.0.11",
     "solid-js": "^1.9.15",
     "solid-motionone": "^1.0.4",
@@ -24,14 +25,14 @@
   },
   "devDependencies": {
     "@montanaaq/ts-config": "^0.1.1",
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.4",
     "commitizen": "^4.3.2",
     "cz-conventional-changelog": "^3.3.0",
-    "lefthook": "^2.1.12",
+    "lefthook": "^2.1.16",
     "typescript": "^7.0.2",
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.3.1",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
     "vite-plugin-solid": "^2.11.14",
-    "vite-plus": "0.3.1"
+    "vite-plus": "1.0.0"
   },
   "browserslist": {
     "production": [
@@ -55,6 +56,6 @@
   },
   "packageManager": "bun@1.4.2",
   "overrides": {
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.3.1"
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0"
   }
 }

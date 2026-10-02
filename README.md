@@ -1,13 +1,6 @@
 # Montana's personal website
 
-A bilingual portfolio built with SolidJS, TypeScript and Vite.
-
-## Requirements
-
-- Node.js 24.14.0
-- Bun 1.2.4
-
-The expected versions are recorded in `.node-version`, `.bun-version` and `package.json`.
+A portfolio built with SolidJS, TypeScript and Vite.
 
 ## Development
 
