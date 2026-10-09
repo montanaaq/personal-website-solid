@@ -83,6 +83,7 @@
     --sticky-anchor-offset: calc(var(--header-height) + 0.5rem);
 
     height: 100dvh;
+    max-inline-size: 100%;
     padding-block: calc(var(--header-height) + 15px) calc(var(--footer-height) + 15px);
     padding-inline: 15px;
   }

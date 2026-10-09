@@ -137,5 +137,20 @@ export const PROJECTS_LIST: TProject[] = [
     isSupport: true,
     link: 'https://edu.baytik-kazan.ru',
     imageClassName: 'baytik_platform_img'
+  },
+  {
+    id: 10,
+    nameKey: 'project.green-api-name',
+    pKey: 'project.green-api-description',
+    dateKey: 'project.green-api-date',
+    url: 'green_api',
+    img: [
+      { src: '/assets/img/green-api/green-api-connect.webp', width: 2400, height: 1394 },
+      { src: '/assets/img/green-api/green-api-chat.webp', width: 2400, height: 1394 }
+    ],
+    isSupport: false,
+    link: 'https://green-api-test-task-hazel.vercel.app/',
+    source_code: 'https://github.com/montanaaq/green-api-test-task',
+    imageClassName: 'green_api_img'
   }
 ] as const

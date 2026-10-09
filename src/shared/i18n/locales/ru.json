@@ -66,5 +66,8 @@
   "project.juniors-bootcamp-cinema-date": "Июнь 2026",
   "project.baytik-platform-name": "Образовательная платформа «Академия Байтик»",
   "project.baytik-platform-description": "Онлайн-платформа для обучения вожатых детского лагеря «Байтик» в Казани.",
-  "project.baytik-platform-date": "Август 2026"
+  "project.baytik-platform-date": "Август 2026",
+  "project.green-api-name": "Веб-чат для MAX",
+  "project.green-api-description": "Чат для мессенджера MAX через GREEN-API, созданный в рамках тестового задания. Можно подключить свой аккаунт, начать чат по номеру телефона, отправлять и получать текстовые сообщения и просматривать историю переписки.",
+  "project.green-api-date": "Октябрь 2026"
 }

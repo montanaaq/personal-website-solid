@@ -103,42 +103,19 @@
 }
 
 .juniors_bootcamp_cinema_img,
-.baytik_platform_img {
+.baytik_platform_img,
+.green_api_img {
   inline-size: min(828px, 100%);
 }
 
 @media only screen and (max-width: 768px) {
+  .project_gallery,
+  .gallery_frame {
+    inline-size: 100%;
+  }
+
   .project_image {
-    inline-size: min(280px, 100%);
-  }
-
-  .sneaknews_img {
-    inline-size: min(300px, 100%);
-  }
-
-  .uni_finder_website_img,
-  .schedulebot_img {
-    inline-size: min(400px, 100%);
-  }
-
-  .profile_website_img {
-    inline-size: min(337.4px, 100%);
-  }
-
-  .desks_duels_img {
-    inline-size: min(250px, 100%);
-  }
-
-  .alfa_ecosystem_img {
-    inline-size: min(380px, 100%);
-  }
-
-  .juniors_bootcamp_cinema_img {
-    inline-size: min(350px, 100%);
-  }
-
-  .baytik_platform_img {
-    inline-size: min(500px, 100%);
+    inline-size: 100%;
   }
 }
 
