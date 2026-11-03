@@ -51,10 +51,7 @@ body {
   transition:
     color 0.2s,
     background-color 0.2s;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   font-optical-sizing: auto;
   animation: animateOnLoad 0.5s linear;
   position: relative;
