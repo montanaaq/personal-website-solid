@@ -69,5 +69,11 @@
   "project.baytik-platform-date": "August 2026",
   "project.green-api-name": "MAX Web Chat",
   "project.green-api-description": "A web chat for the MAX messenger using GREEN-API, built as a test assignment. You can connect your account, start a chat by phone number, send and receive text messages, and view conversation history.",
-  "project.green-api-date": "October 2026"
+  "project.green-api-date": "October 2026",
+  "project.personal-blog-name": "Personal Blog",
+  "project.personal-blog-description": "A personal blog built with Vue.js, TypeScript and Supabase. Supports Markdown posts and an admin panel for creating and editing publications.",
+  "project.personal-blog-date": "November 2026",
+  "project.mini-crm-name": "miniCRM",
+  "project.mini-crm-description": "A CRM for a construction company, built with React, TypeScript and Supabase. Managers organize construction sites and assign tasks, while assignees track their work and submit it for review. Includes a task board, revision workflow and status history.",
+  "project.mini-crm-date": "November 2026"
 }

@@ -59,12 +59,14 @@ const ProjectCard: Component<ProjectCardProps> = props => {
           {t('info.source-code')}
         </a>
       )}
-      <ProjectGallery
-        images={props.project.img}
-        projectName={t(props.project.nameKey)}
-        imageClassName={props.project.imageClassName}
-        priority={props.priority}
-      />
+      {props.project.img && (
+        <ProjectGallery
+          images={props.project.img}
+          projectName={t(props.project.nameKey)}
+          imageClassName={props.project.imageClassName}
+          priority={props.priority}
+        />
+      )}
     </m.div>
   )
 }

@@ -74,7 +74,7 @@ export function ThemeProvider(props: ThemeProviderProps) {
       setTheme(newTheme)
     })
 
-    transition.finished.finally(() => {
+    void transition.finished.finally(() => {
       root.removeAttribute('data-theme-transitioning')
     })
   }

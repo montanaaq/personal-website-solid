@@ -69,5 +69,11 @@
   "project.baytik-platform-date": "Август 2026",
   "project.green-api-name": "Веб-чат для MAX",
   "project.green-api-description": "Чат для мессенджера MAX через GREEN-API, созданный в рамках тестового задания. Можно подключить свой аккаунт, начать чат по номеру телефона, отправлять и получать текстовые сообщения и просматривать историю переписки.",
-  "project.green-api-date": "Октябрь 2026"
+  "project.green-api-date": "Октябрь 2026",
+  "project.personal-blog-name": "Личный блог",
+  "project.personal-blog-description": "Личный блог на Vue.js, TypeScript и Supabase. Поддерживает публикации в Markdown и панель администратора для создания и редактирования записей.",
+  "project.personal-blog-date": "Ноябрь 2026",
+  "project.mini-crm-name": "miniCRM",
+  "project.mini-crm-description": "CRM для строительной компании на React, TypeScript и Supabase. Постановщики управляют объектами и назначают задачи, а исполнители выполняют работу и отправляют её на проверку. Есть доска задач, возврат на доработку и история изменений статуса.",
+  "project.mini-crm-date": "Ноябрь 2026"
 }

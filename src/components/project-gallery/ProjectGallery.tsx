@@ -2,12 +2,13 @@ import type { TProject } from '@/shared/constants/project-list'
 import type { Component } from 'solid-js'
 
 import { useI18n } from '@/shared/contexts/I18nContext'
-import { createSignal, Show } from 'solid-js'
+import { Link } from '@solidjs/meta'
+import { createSignal, For, Show } from 'solid-js'
 
 import styles from './ProjectGallery.module.css'
 
 interface ProjectGalleryProps {
-  images: TProject['img']
+  images: NonNullable<TProject['img']>
   projectName: string
   imageClassName?: string
   priority?: boolean
@@ -32,6 +33,16 @@ const ProjectGallery: Component<ProjectGalleryProps> = props => {
       role="group"
       aria-label={t('info.project-gallery', { project: props.projectName })}
     >
+      <For each={props.images}>
+        {(image, index) => (
+          <Link
+            rel="preload"
+            as="image"
+            href={image.src}
+            fetchpriority={props.priority && index() === 0 ? 'high' : 'low'}
+          />
+        )}
+      </For>
       <div class={styles.gallery_frame}>
         <img
           src={activeImage().src}

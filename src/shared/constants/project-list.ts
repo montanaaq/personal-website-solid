@@ -12,7 +12,7 @@ export type TProject = {
   pKey: TranslationKey
   dateKey: TranslationKey
   url: string
-  img: readonly [TProjectImage, ...TProjectImage[]]
+  img?: readonly [TProjectImage, ...TProjectImage[]]
   isSupport: boolean
   link?: string
   source_code?: string
@@ -152,5 +152,30 @@ export const PROJECTS_LIST: TProject[] = [
     link: 'https://green-api-test-task-hazel.vercel.app/',
     source_code: 'https://github.com/montanaaq/green-api-test-task',
     imageClassName: 'green_api_img'
+  },
+  {
+    id: 11,
+    nameKey: 'project.personal-blog-name',
+    pKey: 'project.personal-blog-description',
+    dateKey: 'project.personal-blog-date',
+    url: 'personal_blog',
+    isSupport: true,
+    link: 'https://personal-blog-omega-gilt.vercel.app',
+    source_code: 'https://github.com/montanaaq/personal-blog'
+  },
+  {
+    id: 12,
+    nameKey: 'project.mini-crm-name',
+    pKey: 'project.mini-crm-description',
+    dateKey: 'project.mini-crm-date',
+    url: 'mini_crm',
+    img: [
+      { src: '/assets/img/mini-crm/crm_objects.png', width: 2940, height: 1664 },
+      { src: '/assets/img/mini-crm/crm_tasks.png', width: 2940, height: 1648 }
+    ],
+    isSupport: true,
+    link: 'https://mini-crm-one-omega.vercel.app',
+    source_code: 'https://github.com/montanaaq/miniCRM',
+    imageClassName: 'mini_crm_img'
   }
 ] as const
