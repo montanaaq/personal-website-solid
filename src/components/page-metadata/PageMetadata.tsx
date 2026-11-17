@@ -1,5 +1,5 @@
 import { Link, Meta, Title } from '@solidjs/meta'
-import { type Component, createMemo } from 'solid-js'
+import { type Component, createMemo, onSettled } from 'solid-js'
 
 type PageMetadataProps = {
   title: string
@@ -13,6 +13,10 @@ const PageMetadata: Component<PageMetadataProps> = props => {
     new URL(props.path, import.meta.env.VITE_SITE_URL).toString()
   )
 
+  onSettled(() => {
+    document.head.querySelectorAll('meta[data-sm], link[data-sm]').forEach(tag => tag.remove())
+  })
+
   return (
     <>
       <Title>{props.title}</Title>
@@ -23,7 +27,7 @@ const PageMetadata: Component<PageMetadataProps> = props => {
       <Meta name="twitter:title" content={props.title} />
       <Meta name="twitter:description" content={props.description} />
       <Meta name="robots" content={props.noIndex ? 'noindex, nofollow' : 'index, follow'} />
-      <Link rel="canonical" href={canonicalUrl()} />
+      <Link key="canonical" rel="canonical" href={canonicalUrl()} />
     </>
   )
 }
