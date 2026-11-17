@@ -1,7 +1,7 @@
+import { animate } from '@motionone/dom'
 import { useNavigate } from '@solidjs/router'
-import { createMemo, mergeProps } from 'solid-js'
-import { Dynamic } from 'solid-js/web'
-import { Motion as m } from 'solid-motionone'
+import { dynamic } from '@solidjs/web'
+import { createMemo, merge, onSettled } from 'solid-js'
 
 type LinkConfig = {
   word: string | undefined
@@ -43,7 +43,7 @@ const buildKeyframes = (
 }
 
 const BlurText = (rawProps: BlurTextProps) => {
-  const props = mergeProps(
+  const props = merge(
     {
       text: '',
       as: 'p' as keyof HTMLElementTagNameMap,
@@ -79,13 +79,13 @@ const BlurText = (rawProps: BlurTextProps) => {
     { filter: 'blur(0px)', opacity: 1, y: 0 }
   ]
 
-  const fromSnapshot = props.animationFrom ?? defaultFrom()
-  const toSnapshots = props.animationTo ?? defaultTo()
+  const fromSnapshot = createMemo(() => props.animationFrom ?? defaultFrom())
+  const toSnapshots = createMemo(() => props.animationTo ?? defaultTo())
 
-  const stepCount = toSnapshots.length + 1
-  const totalDuration = createMemo(() => props.stepDuration * (stepCount - 1))
+  const stepCount = () => toSnapshots().length + 1
+  const totalDuration = createMemo(() => props.stepDuration * (stepCount() - 1))
   const times = createMemo(() =>
-    Array.from({ length: stepCount }, (_, i) => (stepCount === 1 ? 0 : i / (stepCount - 1)))
+    Array.from({ length: stepCount() }, (_, i) => (stepCount() === 1 ? 0 : i / (stepCount() - 1)))
   )
 
   const findLinkForWord = (word: string) => {
@@ -116,8 +116,8 @@ const BlurText = (rawProps: BlurTextProps) => {
     ;(e.currentTarget as HTMLAnchorElement).style.opacity = '1'
   }
 
-  const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots)
-  const finalSnapshot = toSnapshots.at(-1) ?? fromSnapshot
+  const animateKeyframes = createMemo(() => buildKeyframes(fromSnapshot(), toSnapshots()))
+  const Tag = dynamic(() => props.as)
 
   const elementsWithIds = createMemo(() =>
     elements().map((segment, idx) => ({
@@ -128,29 +128,35 @@ const BlurText = (rawProps: BlurTextProps) => {
   )
 
   return (
-    <Dynamic component={props.as} class={props.class} style="display: flex; flex-wrap: wrap;">
+    <Tag class={props.class} style="display: flex; flex-wrap: wrap;">
       {elementsWithIds().map(({ segment, index }) => {
         const linkUrl = findLinkForWord(segment)
 
         const spanTransition = {
           duration: totalDuration(),
-          times: times(),
+          offset: times(),
           delay: (index * props.delay) / 1000,
-          ease: props.easing
+          easing: props.easing
         }
 
         const content = segment === ' ' ? '\u00A0' : segment
 
+        let span: HTMLSpanElement | undefined
+        onSettled(() => {
+          const onComplete = index === elements().length - 1 ? props.onAnimationComplete : undefined
+          if (prefersReducedMotion) {
+            onComplete?.()
+            return
+          }
+          if (!span) return
+          const animation = animate(span, animateKeyframes(), spanTransition)
+          // Cancellation on disposal rejects finished without an animation failure.
+          void animation.finished.then(onComplete, () => {})
+          return () => animation.cancel()
+        })
+
         return (
-          <m.span
-            initial={prefersReducedMotion ? finalSnapshot : fromSnapshot}
-            animate={prefersReducedMotion ? finalSnapshot : animateKeyframes}
-            transition={prefersReducedMotion ? { duration: 0, delay: 0 } : spanTransition}
-            onMotionComplete={
-              index === elements().length - 1 ? props.onAnimationComplete : undefined
-            }
-            style="display: inline-block;"
-          >
+          <span ref={element => (span = element)} style="display: inline-block;">
             {linkUrl ? (
               <a
                 href={linkUrl}
@@ -169,10 +175,10 @@ const BlurText = (rawProps: BlurTextProps) => {
               content
             )}
             {props.animateBy === 'words' && index < elements().length - 1 && '\u00A0'}
-          </m.span>
+          </span>
         )
       })}
-    </Dynamic>
+    </Tag>
   )
 }
 

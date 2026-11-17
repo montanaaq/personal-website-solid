@@ -1,24 +1,23 @@
 import type { Component } from 'solid-js'
 
-import { A, useLocation } from '@solidjs/router'
+import { useLocation } from '@solidjs/router'
 
 import styles from './Footer.module.css'
 
 const Footer: Component = () => {
   const location = useLocation()
-  const isHomePage = location.pathname === '/'
-
-  const footerClass = isHomePage ? styles.footer : `${styles.footer} ${styles.fixed}`
+  const footerClass = () =>
+    location.pathname === '/' ? styles.footer : `${styles.footer} ${styles.fixed}`
 
   const year = new Date().getFullYear()
 
   return (
-    <footer class={footerClass}>
+    <footer class={footerClass()}>
       <span>
         © {year}&nbsp;
-        <A href="/" class={styles.footer_span}>
+        <a href="/" class={styles.footer_span}>
           Montana
-        </A>
+        </a>
         &nbsp;Powered by&nbsp;
         <a
           href="https://www.solidjs.com/"

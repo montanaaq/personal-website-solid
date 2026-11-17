@@ -3,7 +3,8 @@ import type { Component } from 'solid-js'
 
 import ProjectGallery from '@/components/project-gallery/ProjectGallery'
 import { useI18n } from '@/shared/contexts/I18nContext'
-import { Motion as m } from 'solid-motionone'
+import { animate, inView } from '@motionone/dom'
+import { onSettled } from 'solid-js'
 
 import styles from './ProjectCard.module.css'
 
@@ -15,15 +16,37 @@ interface ProjectCardProps {
 const ProjectCard: Component<ProjectCardProps> = props => {
   const { t } = useI18n()
 
+  let container: HTMLDivElement | undefined
+  onSettled(() => {
+    if (!container || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const element = container
+    let animation: ReturnType<typeof animate> | undefined
+    const stop = inView(
+      element,
+      () => {
+        animation = animate(
+          element,
+          { opacity: [0, 1], y: [50, 0] },
+          {
+            duration: 0.4,
+            easing: 'ease-out'
+          }
+        )
+      },
+      { amount: 0.2 }
+    )
+    return () => {
+      stop()
+      animation?.cancel()
+    }
+  })
+
   return (
-    <m.div
+    <div
       class={styles.container}
       role="article"
       aria-labelledby={props.project.url}
-      initial={{ opacity: 0, y: 50 }}
-      inView={{ opacity: 1, y: 0 }}
-      inViewOptions={{ amount: 0.2, once: true }}
-      transition={{ duration: 0.4, easing: 'ease-out' }}
+      ref={element => (container = element)}
     >
       <h2 id={props.project.url} tabindex="-1">
         {t(props.project.nameKey)} ({t(props.project.dateKey)})
@@ -67,7 +90,7 @@ const ProjectCard: Component<ProjectCardProps> = props => {
           priority={props.priority}
         />
       )}
-    </m.div>
+    </div>
   )
 }
 

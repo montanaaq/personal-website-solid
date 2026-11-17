@@ -30,10 +30,10 @@ const ProjectNav: Component<ProjectNavProps> = props => {
               <li class={styles.project_nav_item} style={`--project-index: ${index()}`}>
                 <a
                   href={`#${project.url}`}
-                  class={styles.project_nav_link}
-                  classList={{
-                    [styles.active]: props.activeProject === project.url
-                  }}
+                  class={[
+                    styles.project_nav_link,
+                    { [styles.active]: props.activeProject === project.url }
+                  ]}
                   aria-current={props.activeProject === project.url ? 'location' : undefined}
                   onClick={event => {
                     event.preventDefault()
@@ -74,10 +74,10 @@ const ProjectNav: Component<ProjectNavProps> = props => {
                 <li>
                   <a
                     href={`#${project.url}`}
-                    class={styles.project_dialog_link}
-                    classList={{
-                      [styles.active]: props.activeProject === project.url
-                    }}
+                    class={[
+                      styles.project_dialog_link,
+                      { [styles.active]: props.activeProject === project.url }
+                    ]}
                     aria-current={props.activeProject === project.url ? 'location' : undefined}
                     onClick={event => {
                       event.preventDefault()

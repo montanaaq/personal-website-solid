@@ -177,5 +177,14 @@ export const PROJECTS_LIST: TProject[] = [
     link: 'https://mini-crm-one-omega.vercel.app',
     source_code: 'https://github.com/montanaaq/miniCRM',
     imageClassName: 'mini_crm_img'
+  },
+  {
+    id: 13,
+    nameKey: 'project.local-file-share-name',
+    pKey: 'project.local-file-share-description',
+    dateKey: 'project.local-file-share-date',
+    url: 'local_file_share',
+    isSupport: false,
+    source_code: 'https://github.com/montanaaq/local-file-share'
   }
 ] as const

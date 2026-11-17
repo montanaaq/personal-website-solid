@@ -202,3 +202,17 @@
     padding: 6px 10px;
   }
 }
+
+.theme_notice {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10002;
+  max-width: calc(100vw - 40px);
+  padding: 16px 20px;
+  border: 1px solid color-mix(in srgb, var(--text-color) 20%, transparent);
+  border-radius: 8px;
+  color: var(--text-color);
+  background: var(--bg-color);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 15%);
+}

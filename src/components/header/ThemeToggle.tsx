@@ -1,8 +1,7 @@
 import { useI18n } from '@/shared/contexts/I18nContext'
 import { useTheme } from '@/shared/contexts/ThemeContext'
-import { type Component, createMemo, Show } from 'solid-js'
-import { Motion as m } from 'solid-motionone'
-import { toast } from 'solid-sonner'
+import { Portal } from '@solidjs/web'
+import { type Component, createMemo, createSignal, onCleanup, Show } from 'solid-js'
 
 import MoonIcon from '../icons/MoonIcon'
 import SunIcon from '../icons/SunIcon'
@@ -11,6 +10,10 @@ import styles from './Header.module.css'
 const ThemeToggle: Component = () => {
   const { theme, toggleTheme } = useTheme()
   const { t } = useI18n()
+
+  const [message, setMessage] = createSignal('')
+  let dismissTimer: ReturnType<typeof setTimeout> | undefined
+  onCleanup(() => clearTimeout(dismissTimer))
 
   const isLight = createMemo(() => theme() === 'light')
 
@@ -24,23 +27,29 @@ const ThemeToggle: Component = () => {
 
     const activatingLightTheme = !isLight()
     toggleTheme(coords)
-    toast.info(activatingLightTheme ? t('theme.light-activated') : t('theme.dark-activated'))
+    setMessage(activatingLightTheme ? t('theme.light-activated') : t('theme.dark-activated'))
+    clearTimeout(dismissTimer)
+    dismissTimer = setTimeout(() => setMessage(''), 2500)
   }
 
   return (
-    <div>
-      <m.button
+    <>
+      <button
         onClick={handleClick}
         class={styles.toggle_light_mode}
-        transition={{ easing: 'ease-in-out', duration: 0.3 }}
         aria-label={isLight() ? t('theme.switch-to-dark') : t('theme.switch-to-light')}
         title={isLight() ? t('theme.switch-to-dark') : t('theme.switch-to-light')}
       >
         <Show when={isLight()} fallback={<SunIcon stroke-width={1.5} />}>
           <MoonIcon stroke-width={1.5} />
         </Show>
-      </m.button>
-    </div>
+      </button>
+      <Portal>
+        <div role="status" aria-live="polite" class={styles.theme_notice} hidden={!message()}>
+          {message()}
+        </div>
+      </Portal>
+    </>
   )
 }
 

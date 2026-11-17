@@ -75,5 +75,8 @@
   "project.personal-blog-date": "November 2026",
   "project.mini-crm-name": "miniCRM",
   "project.mini-crm-description": "A CRM for a construction company, built with React, TypeScript and Supabase. Managers organize construction sites and assign tasks, while assignees track their work and submit it for review. Includes a task board, revision workflow and status history.",
-  "project.mini-crm-date": "November 2026"
+  "project.mini-crm-date": "November 2026",
+  "project.local-file-share-name": "Local File Share",
+  "project.local-file-share-description": "An educational application built with C# and Avalonia for sharing files and text over a local network. Its custom UDP-based protocol supports device discovery, packet acknowledgements and retries, file transfer resumption and SHA-256 integrity checks.",
+  "project.local-file-share-date": "November 2026"
 }

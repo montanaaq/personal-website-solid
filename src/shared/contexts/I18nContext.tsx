@@ -1,12 +1,12 @@
+import type { JSX } from '@solidjs/web'
+
 import * as i18n from '@solid-primitives/i18n'
 import {
   createContext,
   createEffect,
-  createResource,
+  createMemo,
   createSignal,
-  type JSX,
-  onCleanup,
-  onMount,
+  onSettled,
   useContext
 } from 'solid-js'
 
@@ -38,16 +38,12 @@ function getInitialLocale(): Locale {
 function useI18nState() {
   const [locale, setLocale] = createSignal<Locale>(getInitialLocale())
 
-  createEffect(() => {
-    try {
-      localStorage.setItem(LANG_STORAGE_KEY, locale())
-    } catch {
-      // Language switching still works for the current session without storage.
-    }
-    document.documentElement.lang = locale()
+  createEffect(locale, selectedLocale => {
+    localStorage.setItem(LANG_STORAGE_KEY, selectedLocale)
+    document.documentElement.lang = selectedLocale
   })
 
-  onMount(() => {
+  onSettled(() => {
     const handleStorage = (event: StorageEvent) => {
       if (event.key !== LANG_STORAGE_KEY) return
 
@@ -60,20 +56,18 @@ function useI18nState() {
 
     window.addEventListener('storage', handleStorage)
 
-    onCleanup(() => {
-      window.removeEventListener('storage', handleStorage)
-    })
+    return () => window.removeEventListener('storage', handleStorage)
   })
 
-  const [dict] = createResource(
-    locale,
-    selectedLocale => (selectedLocale === DEFAULT_LOCALE ? en : fetchDictionary(selectedLocale)),
-    {
-      initialValue: en
-    }
+  const dict = createMemo(
+    () => {
+      const selectedLocale = locale()
+      return selectedLocale === DEFAULT_LOCALE ? en : fetchDictionary(selectedLocale)
+    },
+    { loadingValue: en }
   )
 
-  const translator = i18n.translator(() => dict.latest ?? en, i18n.resolveTemplate)
+  const translator = i18n.translator(dict, i18n.resolveTemplate)
 
   return { t: translator, locale, setLocale, dict }
 }
@@ -85,7 +79,7 @@ interface ProviderProps {
 }
 
 export function I18nProvider(props: ProviderProps) {
-  return <I18nContext.Provider value={useI18nState()}>{props.children}</I18nContext.Provider>
+  return <I18nContext value={useI18nState()}>{props.children}</I18nContext>
 }
 
 export function useI18n() {

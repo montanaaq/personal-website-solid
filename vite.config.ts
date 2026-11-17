@@ -1,5 +1,5 @@
+import solid from '@solidjs/vite-plugin'
 import path from 'node:path'
-import solid from 'vite-plugin-solid'
 import { defineConfig, lazyPlugins } from 'vite-plus'
 
 export default defineConfig({

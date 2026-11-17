@@ -1,4 +1,6 @@
-import { createContext, createEffect, createSignal, type JSX, useContext } from 'solid-js'
+import type { JSX } from '@solidjs/web'
+
+import { createContext, createEffect, createSignal, untrack, flush, useContext } from 'solid-js'
 
 type Theme = 'dark' | 'light'
 
@@ -33,16 +35,14 @@ type ThemeProviderProps = {
 }
 
 export function ThemeProvider(props: ThemeProviderProps) {
-  const [theme, setThemeState] = createSignal<Theme>(props.defaultTheme ?? getInitialTheme())
+  const [theme, setThemeState] = createSignal<Theme>(
+    untrack(() => props.defaultTheme ?? getInitialTheme())
+  )
 
-  createEffect(() => {
+  createEffect(theme, selectedTheme => {
     const root = document.documentElement
-    root.setAttribute('data-theme', theme())
-    try {
-      localStorage.setItem(STORAGE_KEY, theme())
-    } catch {
-      // The selected theme still works for the current session when storage is unavailable.
-    }
+    root.setAttribute('data-theme', selectedTheme)
+    localStorage.setItem(STORAGE_KEY, selectedTheme)
   })
 
   const setTheme = (newTheme: Theme) => {
@@ -71,7 +71,7 @@ export function ThemeProvider(props: ThemeProviderProps) {
     root.setAttribute('data-theme-transitioning', newTheme)
 
     const transition = document.startViewTransition(() => {
-      setTheme(newTheme)
+      flush(() => setTheme(newTheme))
     })
 
     void transition.finished.finally(() => {
@@ -79,11 +79,7 @@ export function ThemeProvider(props: ThemeProviderProps) {
     })
   }
 
-  return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
-      {props.children}
-    </ThemeContext.Provider>
-  )
+  return <ThemeContext value={{ theme, setTheme, toggleTheme }}>{props.children}</ThemeContext>
 }
 
 export function useTheme(): ThemeContextValue {

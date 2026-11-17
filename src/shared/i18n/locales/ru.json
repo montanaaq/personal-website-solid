@@ -75,5 +75,8 @@
   "project.personal-blog-date": "Ноябрь 2026",
   "project.mini-crm-name": "miniCRM",
   "project.mini-crm-description": "CRM для строительной компании на React, TypeScript и Supabase. Постановщики управляют объектами и назначают задачи, а исполнители выполняют работу и отправляют её на проверку. Есть доска задач, возврат на доработку и история изменений статуса.",
-  "project.mini-crm-date": "Ноябрь 2026"
+  "project.mini-crm-date": "Ноябрь 2026",
+  "project.local-file-share-name": "Local File Share",
+  "project.local-file-share-description": "Учебное приложение на C# и Avalonia для обмена файлами и текстом в локальной сети. Собственный протокол поверх UDP поддерживает обнаружение устройств, подтверждения и повторную отправку пакетов, возобновление передачи файлов и проверку целостности по SHA-256.",
+  "project.local-file-share-date": "Ноябрь 2026"
 }

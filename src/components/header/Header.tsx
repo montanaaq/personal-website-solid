@@ -1,7 +1,7 @@
 import type { Component } from 'solid-js'
 
 import { useI18n } from '@/shared/contexts/I18nContext'
-import { A, useLocation } from '@solidjs/router'
+import { useLocation } from '@solidjs/router'
 import { Show } from 'solid-js'
 
 import styles from './Header.module.css'
@@ -22,14 +22,14 @@ const Header: Component = () => {
     <header class={styles.header}>
       <div class={styles.wrapper}>
         <div>
-          <A
+          <a
             href="/"
             style={{
               'text-decoration': 'none'
             }}
           >
             <h4 class={styles.name}>{t('header.name')}</h4>
-          </A>
+          </a>
           <div>
             <ThemeToggle />
           </div>

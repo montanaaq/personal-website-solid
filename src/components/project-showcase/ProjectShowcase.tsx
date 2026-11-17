@@ -11,7 +11,15 @@ import {
   isProjectAlignedToScrollTarget,
   scrollToProject
 } from '@/shared/helpers/project-scroll'
-import { type Component, createMemo, createSignal, For, onCleanup, onMount } from 'solid-js'
+import {
+  type Component,
+  createMemo,
+  createSignal,
+  For,
+  onCleanup,
+  onSettled,
+  untrack
+} from 'solid-js'
 
 import styles from './ProjectShowcase.module.css'
 
@@ -22,7 +30,7 @@ interface ProjectShowcaseProps {
 const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
   const today = new Date()
   const { t, locale } = useI18n()
-  const projectUrls = props.projects.map(project => project.url)
+  const projectUrls = untrack(() => props.projects.map(project => project.url))
   const firstProjectUrl = projectUrls[0] ?? ''
   const [activeProject, setActiveProject] = createSignal(firstProjectUrl)
   const [pendingProjectUrl, setPendingProjectUrl] = createSignal<string>()
@@ -75,7 +83,7 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
     scrollDelay.schedule(scrollContainer, projectUrl)
   }
 
-  onMount(() => {
+  onSettled(() => {
     if (!scrollContainer) return
 
     const container = scrollContainer
@@ -136,14 +144,14 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
       updateScrollState()
     }
 
-    onCleanup(() => {
+    return () => {
       container.removeEventListener('scroll', handleScroll)
       window.removeEventListener('popstate', handleHistoryNavigation)
       window.removeEventListener('hashchange', handleHistoryNavigation)
       if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame)
       if (historyFrame !== undefined) window.cancelAnimationFrame(historyFrame)
       delete document.documentElement.dataset.pageScrolled
-    })
+    }
   })
 
   onCleanup(() => {
