@@ -23,6 +23,8 @@
   "info.link": "Link",
   "info.source-code": "Source code",
   "info.project-screenshot": "project screenshot",
+  "info.open-screenshot": "Enlarge screenshot",
+  "info.close-screenshot": "Close screenshot",
   "info.project-gallery": "Screenshots of {{ project }}",
   "info.previous-screenshot": "Previous screenshot",
   "info.next-screenshot": "Next screenshot",

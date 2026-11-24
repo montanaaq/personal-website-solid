@@ -23,6 +23,8 @@ import {
 
 import styles from './ProjectShowcase.module.css'
 
+const IMAGE_PRELOAD_MARGIN = 300
+
 interface ProjectShowcaseProps {
   projects: TProject[]
 }
@@ -34,6 +36,7 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
   const firstProjectUrl = projectUrls[0] ?? ''
   const [activeProject, setActiveProject] = createSignal(firstProjectUrl)
   const [pendingProjectUrl, setPendingProjectUrl] = createSignal<string>()
+  const [preloadThroughIndex, setPreloadThroughIndex] = createSignal(-1)
   const scrollDelay = createProjectScrollDelay()
   let scrollContainer: HTMLElement | undefined
 
@@ -44,6 +47,10 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
       day: 'numeric'
     }).format(today)
   )
+
+  const preloadThroughProject = (projectUrl: string) => {
+    setPreloadThroughIndex(current => Math.max(current, projectUrls.indexOf(projectUrl)))
+  }
 
   const updateActiveProject = (container: HTMLElement, headings: HTMLElement[]) => {
     const activeProjectUrl = getActiveProjectUrl({
@@ -75,6 +82,7 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
 
     setPendingProjectUrl(projectUrl)
     setActiveProject(projectUrl)
+    preloadThroughProject(projectUrl)
 
     if (window.location.hash !== `#${projectUrl}`) {
       window.history.pushState(null, '', `#${projectUrl}`)
@@ -97,6 +105,12 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
 
     const updateScrollState = () => {
       scrollFrame = undefined
+      const preloadLine = container.getBoundingClientRect().bottom + IMAGE_PRELOAD_MARGIN
+      const reachedHeading = projectHeadings.findLast(
+        heading => heading.getBoundingClientRect().top <= preloadLine
+      )
+      if (reachedHeading) preloadThroughProject(reachedHeading.id)
+
       document.documentElement.dataset.pageScrolled = String(container.scrollTop > 50)
       updateActiveProject(container, projectHeadings)
     }
@@ -113,6 +127,7 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
       if (projectUrls.includes(projectUrl)) {
         setPendingProjectUrl(projectUrl)
         setActiveProject(projectUrl)
+        preloadThroughProject(projectUrl)
         scrollToProject(container, projectUrl, { focus: true })
       } else {
         setPendingProjectUrl(undefined)
@@ -131,14 +146,16 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
     }
 
     container.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
     window.addEventListener('popstate', handleHistoryNavigation)
     window.addEventListener('hashchange', handleHistoryNavigation)
 
     if (projectUrls.includes(initialProject)) {
       setActiveProject(initialProject)
+      preloadThroughProject(initialProject)
       window.requestAnimationFrame(() => {
         scrollToProject(container, initialProject, { focus: true })
-        updateActiveProject(container, projectHeadings)
+        handleScroll()
       })
     } else {
       updateScrollState()
@@ -146,6 +163,7 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
 
     return () => {
       container.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
       window.removeEventListener('popstate', handleHistoryNavigation)
       window.removeEventListener('hashchange', handleHistoryNavigation)
       if (scrollFrame !== undefined) window.cancelAnimationFrame(scrollFrame)
@@ -175,7 +193,13 @@ const ProjectShowcase: Component<ProjectShowcaseProps> = props => {
           />
           <div class={styles.projects_list}>
             <For each={props.projects}>
-              {(project, index) => <ProjectCard project={project} priority={index() === 0} />}
+              {(project, index) => (
+                <ProjectCard
+                  project={project}
+                  priority={index() === 0}
+                  preloadImages={index() <= preloadThroughIndex()}
+                />
+              )}
             </For>
           </div>
         </div>

@@ -12,12 +12,62 @@
   border-radius: 15px;
 }
 
+.preview_trigger {
+  display: block;
+  max-inline-size: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.preview_trigger:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: -3px;
+}
+
 .project_image {
   display: block;
   inline-size: min(350px, 100%);
   max-inline-size: 100%;
   block-size: auto;
   border-radius: 15px;
+}
+
+.preview_dialog {
+  inset: 0;
+  max-inline-size: calc(100dvi - 2rem);
+  max-block-size: calc(100dvb - 2rem);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 15px;
+  background: transparent;
+}
+
+.preview_dialog:modal {
+  overscroll-behavior: contain;
+}
+
+.preview_dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: rgb(0 0 0 / 85%);
+}
+
+.preview_image {
+  display: block;
+  inline-size: auto;
+  block-size: auto;
+  max-inline-size: calc(100dvi - 2rem);
+  max-block-size: calc(100dvb - 2rem);
+}
+
+.preview_close {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-end: 0.75rem;
 }
 
 .gallery_controls {
@@ -112,7 +162,8 @@
 
 @media only screen and (max-width: 768px) {
   .project_gallery,
-  .gallery_frame {
+  .gallery_frame,
+  .preview_trigger {
     inline-size: 100%;
   }
 

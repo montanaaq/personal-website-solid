@@ -11,6 +11,7 @@ import styles from './ProjectCard.module.css'
 interface ProjectCardProps {
   project: TProject
   priority?: boolean
+  preloadImages?: boolean
 }
 
 const ProjectCard: Component<ProjectCardProps> = props => {
@@ -88,6 +89,7 @@ const ProjectCard: Component<ProjectCardProps> = props => {
           projectName={t(props.project.nameKey)}
           imageClassName={props.project.imageClassName}
           priority={props.priority}
+          preloadImages={props.preloadImages}
         />
       )}
     </div>

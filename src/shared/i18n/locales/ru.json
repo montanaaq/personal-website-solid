@@ -23,6 +23,8 @@
   "info.link": "Ссылка",
   "info.source-code": "Исходный код",
   "info.project-screenshot": "скриншот проекта",
+  "info.open-screenshot": "Увеличить скриншот",
+  "info.close-screenshot": "Закрыть скриншот",
   "info.project-gallery": "Скриншоты проекта {{ project }}",
   "info.previous-screenshot": "Предыдущий скриншот",
   "info.next-screenshot": "Следующий скриншот",
