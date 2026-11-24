@@ -105,7 +105,8 @@
 .juniors_bootcamp_cinema_img,
 .baytik_platform_img,
 .green_api_img,
-.mini_crm_img {
+.mini_crm_img,
+.alfa_hack_img {
   inline-size: min(828px, 100%);
 }
 

@@ -186,5 +186,40 @@ export const PROJECTS_LIST: TProject[] = [
     url: 'local_file_share',
     isSupport: false,
     source_code: 'https://github.com/montanaaq/local-file-share'
+  },
+  {
+    id: 14,
+    nameKey: 'project.alfa-hack-name',
+    pKey: 'project.alfa-hack-description',
+    dateKey: 'project.alfa-hack-date',
+    url: 'alfa_hack',
+    img: [
+      { src: '/assets/img/alfa-hack/01-prichina-otkaza.webp', width: 744, height: 933 },
+      { src: '/assets/img/alfa-hack/02-personalnye-predlozheniya.webp', width: 859, height: 1064 },
+      {
+        src: '/assets/img/alfa-hack/14-alternativnye-predlozheniya.webp',
+        width: 817,
+        height: 1130
+      },
+      { src: '/assets/img/alfa-hack/03-dopolnitelnaya-anketa.webp', width: 1155, height: 933 },
+      { src: '/assets/img/alfa-hack/12-rassmotrenie-ankety.webp', width: 1144, height: 924 },
+      {
+        src: '/assets/img/alfa-hack/13-rezultat-dopolnitelnoy-otsenki.webp',
+        width: 817,
+        height: 1121
+      },
+      { src: '/assets/img/alfa-hack/04-vybor-kompanii.webp', width: 1140, height: 921 },
+      { src: '/assets/img/alfa-hack/05-anketa-i-chernovik.webp', width: 1155, height: 933 },
+      { src: '/assets/img/alfa-hack/06-rabochaya-ochered-banka.webp', width: 1144, height: 924 },
+      { src: '/assets/img/alfa-hack/07-kartochka-zayavki-banka.webp', width: 1144, height: 924 },
+      { src: '/assets/img/alfa-hack/08-proverki-i-istoriya.webp', width: 1144, height: 924 },
+      { src: '/assets/img/alfa-hack/09-pravila-i-bonus-ankety.webp', width: 817, height: 839 },
+      { src: '/assets/img/alfa-hack/10-model-kreditnoy-otsenki.webp', width: 817, height: 1632 },
+      { src: '/assets/img/alfa-hack/grafana.webp', width: 2040, height: 1441 },
+      { src: '/assets/img/alfa-hack/11-grafana-loki-diagnostika.webp', width: 1265, height: 712 }
+    ],
+    isSupport: false,
+    source_code: 'https://github.com/apohu-alfa/alfa-hack',
+    imageClassName: 'alfa_hack_img'
   }
 ] as const

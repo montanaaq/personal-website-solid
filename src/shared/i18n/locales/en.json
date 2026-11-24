@@ -78,5 +78,8 @@
   "project.mini-crm-date": "November 2026",
   "project.local-file-share-name": "Local File Share",
   "project.local-file-share-description": "An educational application built with C# and Avalonia for sharing files and text over a local network. Its custom UDP-based protocol supports device discovery, packet acknowledgements and retries, file transfer resumption and SHA-256 integrity checks.",
-  "project.local-file-share-date": "November 2026"
+  "project.local-file-share-date": "November 2026",
+  "project.alfa-hack-name": "alfa-hack-2026",
+  "project.alfa-hack-description": "A business lending portal built by APOHU Team at Alfa Hack 2026. Entrepreneurs can submit a loan application, see why it was declined, provide more information for reassessment, and compare personalized offers with AI-assisted recommendations. Bank staff review applications and see check results and decision history, while administrators configure the credit scoring model. Built with React, TypeScript, Spring Boot and FastAPI.",
+  "project.alfa-hack-date": "October 2026"
 }
